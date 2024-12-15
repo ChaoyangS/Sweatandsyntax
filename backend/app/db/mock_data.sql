@@ -11,7 +11,7 @@ VALUES
 (2, 65.0, 160, 28, 'Female', 'High');
 
 -- Insert workout plans
-INSERT INTO workout_plan (workout_name, goal, muscle_group, equipment, time_required, calories_burned)
+INSERT INTO workout_plan (workout_name, goal, muscle, equipment, time_required, calories_burned)
 VALUES
 ('5 Day Muscle Mass Split', 'Bulking', 'Back', 'Barbell', 5, NULL);
 
@@ -69,9 +69,9 @@ VALUES
 (2, 65.0, '2024-12-11', 'Struggling with burpees but feeling stronger');        -- Jane's progress log
 
 -- Insert the meal plan into the 'meal_plan' table
-INSERT INTO meal_plan (meal_plan_name, goal, prep_time)
+INSERT INTO meal_plan (meal_plan_name, goal)
 VALUES
-('Strength Training Meal Plan', 'Muscle Gain', 30);
+('Strength Training Meal Plan', 'Muscle Gain');
 
 -- Insert detailed meals into the 'meal_plan_details' table
 INSERT INTO meal_plan_details (meal_plan_id, meal_type, meal_name, ingredients, protein, carbs, fats, calories, prep_time, servings)

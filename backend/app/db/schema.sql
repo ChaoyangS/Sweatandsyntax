@@ -9,20 +9,22 @@ CREATE TABLE user (
 
 -- User details table: stores personal details about the user
 CREATE TABLE user_details (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_details_id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     weight REAL NOT NULL,
     height REAL NOT NULL,
     age INTEGER,
     gender TEXT CHECK (gender IN ('Male', 'Female', 'Other')),
+    muscle TEXT,
     activity_level TEXT, -- e.g., 'Low', 'Moderate', 'High'
     FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE
 );
 
 -- Workout plan table: stores workout plans
 CREATE TABLE workout_plan (
-    workout_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    workout_plan_id INTEGER PRIMARY KEY AUTOINCREMENT,
     workout_name TEXT NOT NULL UNIQUE,         -- Name of the workout plan
+    days INT NOT NULL,                         -- Days of the plan
     goal TEXT NOT NULL,                        -- Goal of the plan (e.g., 'Build Muscle', 'Lose Weight')
     muscle TEXT NOT NULL,                      -- Targeted muscle group (e.g., 'Full Body', 'Upper Body')
     equipment TEXT NOT NULL,                   -- Required equipment (e.g., 'Dumbbell', 'Barbell', 'None')
@@ -35,7 +37,7 @@ CREATE TABLE workout_plan (
 
 -- Workout plan details table: stores detail workout plans associated workout plan
 CREATE TABLE workout_plan_details (
-    detail_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    workout_plan_detail_id INTEGER PRIMARY KEY AUTOINCREMENT,
     workout_id INTEGER NOT NULL,
     day_of_week TEXT NOT NULL CHECK (day_of_week IN ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')),
     exercise_name TEXT NOT NULL,
@@ -62,19 +64,19 @@ CREATE TABLE meal_plan (
     meal_plan_id INTEGER PRIMARY KEY AUTOINCREMENT,
     meal_plan_name TEXT NOT NULL UNIQUE,        -- Name of the meal plan (e.g., 'High Protein Plan')
     goal TEXT NOT NULL,                        -- Goal of the meal plan (e.g., 'Weight Loss', 'Muscle Gain')
-    prep_time INTEGER NOT NULL,                -- Time taken to prepare in minutes
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
 -- Meal plan details table: stores meal plans details associated to meal plan
 CREATE TABLE meal_plan_details (
-    detail_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    meal_plan_detail_id INTEGER PRIMARY KEY AUTOINCREMENT,
     meal_plan_id INTEGER NOT NULL,            -- Foreign key linking to meal_plan
     meal_type TEXT NOT NULL CHECK (
         meal_type IN ('Breakfast', 'Lunch', 'Dinner', 'Snack')
     ),                                        -- Type of meal (e.g., 'Breakfast', 'Lunch')
     meal_name TEXT NOT NULL,                  -- Name of the meal (e.g., 'Oatmeal with Berries')
+    prep_time INTEGER NOT NULL,                -- Time taken to prepare in minutes
     ingredients TEXT NOT NULL,                -- Ingredients list (e.g., 'Oats, Berries, Almond Milk')
     protein REAL NOT NULL,                    -- Protein content in grams
     carbs REAL NOT NULL,                      -- Carbohydrate content in grams

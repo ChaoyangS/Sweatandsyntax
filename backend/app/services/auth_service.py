@@ -1,7 +1,7 @@
 from flask import session
 from models.user import User, UserDetails
 from werkzeug.security import check_password_hash
-from app import db  # Adjust the path to match your project structure
+from app.db import get_db  # Adjust the path to match your project structure
 
 class AuthService:
     @staticmethod

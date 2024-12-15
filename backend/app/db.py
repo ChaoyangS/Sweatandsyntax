@@ -3,7 +3,6 @@ The db.py is used to create database connection
 """
 import sqlite3
 from datetime import datetime
-
 import click
 from flask import current_app, g
 
@@ -45,7 +44,7 @@ def init_db():
     """
     db = get_db()
 
-    with current_app.open_resource('schema.sql') as f:
+    with current_app.open_resource('db/schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
 
@@ -62,5 +61,12 @@ sqlite3.register_converter(
     """
     "timestamp", lambda v: datetime.fromisoformat(v.decode())
 )
+
+def init_app(app):
+    """Register database functions with the Flask app. This is called by
+    the application factory.
+    """
+    app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)
 
 
