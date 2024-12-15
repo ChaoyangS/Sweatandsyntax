@@ -1,4 +1,4 @@
-from models import WorkoutPlan, WorkoutPlanDetails, User
+from models import WorkoutPlan, WorkoutPlanDetails, User, UserExerciseProgress #UserExcerciseProgress TBD
 from db import db
 
 class WorkoutService:
