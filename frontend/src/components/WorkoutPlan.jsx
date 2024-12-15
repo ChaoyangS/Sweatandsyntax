@@ -14,7 +14,7 @@ const WorkoutPlan = () => {
       exercises: [
         {
           gesture: "Push-Ups",
-          image: pushups, // Replace with your local image path
+          image: pushups,
           time: "10 minutes",
           sets: "3 sets of 15 reps",
           area: "Chest, Shoulders, Triceps",

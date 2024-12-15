@@ -6,13 +6,7 @@ function PersonalPage() {
   return (
     <>
       <Header />
-
       <UserProfile />
-
-      {/* 
-      <MealPlan />
-      
-        <Footer /> */}
     </>
   );
 }
