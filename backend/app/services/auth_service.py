@@ -1,9 +1,28 @@
 from flask import session
 from models.user import User, UserDetails
-from werkzeug.security import check_password_hash
-from app.db import get_db  # Adjust the path to match your project structure
+from werkzeug.security import check_password_hash, generate_password_hash
+from app import db  
 
 class AuthService:
+    
+    @staticmethod
+    def create_user(username, password, email, weight, height, age, gender):
+        hashed_password = generate_password_hash(password)
+        new_user = User(username=username, password=hashed_password, email=email)
+        db.session.add(new_user)
+        db.session.commit()
+
+        new_user_details = UserDetails(
+            user_id=new_user.user_id,
+            weight=weight,
+            height=height,
+            age=age,
+            gender=gender,
+        )
+        db.session.add(new_user_details)
+        db.session.commit()
+        return {"message": "User created successfully"}, 201
+
     @staticmethod
     def login_user(username, password):
         """
