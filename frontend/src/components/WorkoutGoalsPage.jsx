@@ -17,7 +17,7 @@ const WorkoutGoalsPage = () => {
   const { name, age, weight, height, activityLevel } = location.state || {}; // Extract the state passed from SummaryPage
 
   // Define the state for the user's input
-  const [focusPart, setFocusPart] = useState("");
+  const [focusPart, setFocusPart] = useState([]); // Change focusPart to an array
   const [workoutFrequency, setWorkoutFrequency] = useState(null);
   const [workoutGoal, setWorkoutGoal] = useState("");
   const [equipment, setEquipment] = useState(""); // New state for equipment
@@ -33,12 +33,23 @@ const WorkoutGoalsPage = () => {
         weight,
         height,
         activityLevel,
-        focusPart,
+        focusPart, // Pass the array of selected focus parts
         workoutFrequency,
         workoutGoal,
         equipment, // Include equipment in the passed state
       },
     });
+  };
+
+  // Handle adding/removing focus parts
+  const handleFocusPartClick = (part) => {
+    if (focusPart.includes(part)) {
+      // If part is already selected, remove it
+      setFocusPart(focusPart.filter((item) => item !== part));
+    } else {
+      // Otherwise, add it to the selected parts
+      setFocusPart([...focusPart, part]);
+    }
   };
 
   return (
@@ -61,9 +72,9 @@ const WorkoutGoalsPage = () => {
                 key={part.id}
                 type="button"
                 className={`image-option ${
-                  focusPart === part.id ? "selected" : ""
+                  focusPart.includes(part.id) ? "selected" : ""
                 }`}
-                onClick={() => setFocusPart(part.id)}
+                onClick={() => handleFocusPartClick(part.id)} // Call the handler
               >
                 <img src={part.image} alt={part.label} />
                 <p>{part.label}</p>
@@ -132,7 +143,7 @@ const WorkoutGoalsPage = () => {
         <button
           type="submit"
           disabled={
-            !focusPart ||
+            focusPart.length === 0 || // Ensure at least one body part is selected
             workoutFrequency === null ||
             !workoutGoal ||
             !equipment
