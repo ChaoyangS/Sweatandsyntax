@@ -16,7 +16,7 @@ def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
             #current_app is a special flask proxy used to access application object
-            current_app.config['DATABASE'],
+            current_app.config['DATABASE_URI'],
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         #g is a special object provided by flask
@@ -46,6 +46,12 @@ def init_db():
 
     with current_app.open_resource('db/schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
+        click.echo("data schema loaded successfully.")
+
+    # Load mock_data.sql
+    with current_app.open_resource('db/mock_data.sql') as f:
+        db.executescript(f.read().decode('utf8'))
+        click.echo("Mock data loaded successfully.")
 
 
 @click.command('init-db')

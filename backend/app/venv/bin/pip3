@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Users/tian/Desktop/School/UPenn /Fall 2024/Hackathon/workspace/repo/Sweatandsyntax/backend/app/venv/bin/python" "$0" "$@"
+'''exec' "/Users/tian/Desktop/School/UPenn /Fall 2024/Hackathon/workspace/repo/Sweatandsyntax/backend/app/venv/bin/python3.12" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re

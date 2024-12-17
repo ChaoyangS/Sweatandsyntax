@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6b1dfbc1-4c97-47c8-9268-7caaac35a207" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/backend/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/db/mock_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db/mock_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/db/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/routes/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/routes/auth_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/services/auth_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/services/auth_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/Activate.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/Activate.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/activate" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/activate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/activate.csh" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/activate.csh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/activate.fish" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/activate.fish" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/dotenv" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/dotenv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/flask" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/flask" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/pip" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/pip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/pip3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/pip3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/venv/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/pyvenv.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/instance/db.sqlite" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="SQL File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2q6aOjUiD1X2gNGRQWvOao0zJ9z" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/tian/Desktop/School/UPenn /Fall 2024/Hackathon/workspace/repo/Sweatandsyntax/backend/app/db",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.language",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "RunConfigurationTargetLRU": [
+      "7f2981b1-9942-4833-851f-5f986554eb93"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/app/db" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/app/utils" />
+      <recent name="$PROJECT_DIR$/backend/app/db" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="mock_data.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/backend/app/db/mock_data.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="7f2981b1-9942-4833-851f-5f986554eb93" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b1dfbc1-4c97-47c8-9268-7caaac35a207" name="Changes" comment="" />
+      <created>1733985449011</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733985449011</updated>
+      <workItem from="1734030107397" duration="44390000" />
+      <workItem from="1734302294756" duration="22826000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

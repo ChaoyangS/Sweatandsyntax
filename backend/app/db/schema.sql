@@ -1,3 +1,12 @@
+-- Drop tables
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS user_details;
+DROP TABLE IF EXISTS workout_plan;
+DROP TABLE IF EXISTS workout_plan_details;
+DROP TABLE IF EXISTS user_exercise_progress;
+DROP TABLE IF EXISTS meal_plan;
+DROP TABLE IF EXISTS meal_plan_details;
+
 -- User table: stores basic user authentication information
 CREATE TABLE user (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,8 +38,6 @@ CREATE TABLE workout_plan (
     muscle TEXT NOT NULL,                      -- Targeted muscle group (e.g., 'Full Body', 'Upper Body')
     equipment TEXT NOT NULL,                   -- Required equipment (e.g., 'Dumbbell', 'Barbell', 'None')
     level TEXT NOT NULL,                       -- Difficulty level (e.g., 'Beginner', 'Intermediate', 'Advanced')
-    time_required INTEGER NOT NULL,            -- Time in minutes
-    calories_burned REAL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -38,14 +45,14 @@ CREATE TABLE workout_plan (
 -- Workout plan details table: stores detail workout plans associated workout plan
 CREATE TABLE workout_plan_details (
     workout_plan_detail_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    workout_id INTEGER NOT NULL,
+    workout_plan_id INTEGER NOT NULL,
     day_of_week TEXT NOT NULL CHECK (day_of_week IN ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')),
     exercise_name TEXT NOT NULL,
     sets INTEGER NOT NULL,
     reps INTEGER NOT NULL,
     interval INTEGER NOT NULL,
     rest_time INTEGER NOT NULL,
-    FOREIGN KEY (workout_id) REFERENCES workout_plan (workout_id) ON DELETE CASCADE
+    FOREIGN KEY (workout_plan_id) REFERENCES workout_plan (workout_plan_id) ON DELETE CASCADE
 );
 
 -- Progress tracking table to record user progress over time

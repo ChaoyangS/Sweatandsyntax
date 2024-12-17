@@ -1,10 +1,12 @@
-from flask import Flask, request, jsonify
-from services.auth_service import AuthService
+from flask import Blueprint, request, jsonify
+from ..services.auth_service import AuthService
 
-app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Needed for session management
+# app = Flask(__name__)
+# app.secret_key = 'your_secret_key'  # Needed for session management
 
-@app.route("/signup", methods=["POST"])
+auth_bp = Blueprint("auth", __name__) # Create a blueprint for auth routes
+
+@auth_bp.route("/signup", methods=["POST"])
 def signup():
     data = request.json
     required_fields = ["username", "password", "email", "weight", "height", "age", "gender"]
@@ -25,7 +27,7 @@ def signup():
     response, status_code = AuthService.create_user(username, password, email, weight, height, age, gender)
     return jsonify(response), status_code
 
-@app.route("/login", methods=["POST"])
+@auth_bp.route("/login", methods=["POST"])
 def login():
     data = request.json
     if not data.get("username") or not data.get("password"):
@@ -38,7 +40,7 @@ def login():
     response, status_code = AuthService.login_user(username, password)
     return jsonify(response), status_code
 
-@app.route("/logout", methods=["POST"])
+@auth_bp.route("/logout", methods=["POST"])
 def logout():
     """
     Handles user logout by clearing the session data.
@@ -46,7 +48,7 @@ def logout():
     response, status = AuthService.logout_user()
     return jsonify(response), status
 
-@app.route("/current-user", methods=["GET"])
+@auth_bp.route("/current-user", methods=["GET"])
 def get_current_user():
     """
     Retrieves the currently logged-in user's details.
