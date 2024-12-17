@@ -1,18 +1,21 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom"; // We use useLocation to access passed data
-import profileImage from "../assets/images/1bodytype.png"; // Import your image
-import "../styles/SummaryPage.css"; // Make sure this path is correct
+import { useLocation, useNavigate } from "react-router-dom";
+import maleImage from "../assets/images/2bodytype.png";
+import femaleImage from "../assets/images/1bodytype.png";
+import "../styles/SummaryPage.css";
 
 const SummaryPage = () => {
-  const location = useLocation(); // Get passed state
+  const location = useLocation();
   const navigate = useNavigate();
 
-  // Destructure the passed data from the state
-  const { name, age, weight, height, activityLevel, gender } =
-    location.state || {};
+  const { name, age, weight, height, activityLevel, gender } = location.state || {};
+
+  // Normalize and select image
+  const normalizedGender = gender?.trim().toLowerCase();
+  console.log("Gender:", normalizedGender); // Debugging log
+  const profileImage = normalizedGender === "male" ? maleImage : femaleImage;
 
   const handleGoToWorkout = () => {
-    // Navigate to WorkoutGoalsPage with current user data
     navigate("/workout-goals", {
       state: { name, age, weight, height, activityLevel, gender },
     });
@@ -20,7 +23,6 @@ const SummaryPage = () => {
 
   return (
     <div className="summary-container">
-      {/* Left column for text */}
       <div className="left-column">
         <h2>Hi, {name}!</h2>
         <p>We have generated your basic profile:</p>
@@ -54,7 +56,6 @@ const SummaryPage = () => {
         </div>
       </div>
 
-      {/* Right column for the image */}
       <div className="right-column">
         <img src={profileImage} alt="Profile" />
       </div>
