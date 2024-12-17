@@ -1,10 +1,12 @@
+import sys
+print(sys.path)
+
 import os
-from .db import init_app as db_init_app
+from app.db import init_app as db_init_app
 from flask import Flask
 from .routes.auth_routes import auth_bp
-from .config import Config
+from config import Config
 from flask_cors import CORS
-
 
 """
 The __init__.py serves double duty:

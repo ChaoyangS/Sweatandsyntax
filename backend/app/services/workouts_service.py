@@ -1,5 +1,5 @@
-from models import WorkoutPlan, WorkoutPlanDetails, User, UserExerciseProgress #UserExcerciseProgress TBD
-from db import db
+from models import WorkoutPlan, User, UserExerciseProgress #UserExcerciseProgress TBD
+from app.db import db
 
 class WorkoutService:
     @staticmethod

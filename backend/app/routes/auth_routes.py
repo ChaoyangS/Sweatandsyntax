@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from ..services.auth_service import AuthService
+from flask import session
 
 # app = Flask(__name__)
 # app.secret_key = 'your_secret_key'  # Needed for session management
@@ -9,7 +10,7 @@ auth_bp = Blueprint("auth", __name__) # Create a blueprint for auth routes
 @auth_bp.route("/signup", methods=["POST"])
 def signup():
     data = request.json
-    required_fields = ["username", "password", "email", "weight", "height", "age", "gender"]
+    required_fields = ["username", "password", "email"]
 
     # Ensure all required fields are present
     if not all(field in data for field in required_fields):
@@ -18,14 +19,40 @@ def signup():
     username = data["username"]
     password = data["password"]
     email = data["email"]
+
+    # Call AuthService to create a new user
+    response, status_code = AuthService.create_user(username, password, email)
+
+    #retrieve the userId
+    if status_code == 201:
+        session["user_id"] = response["user_id"] # Store user_id in session
+    return jsonify(response), status_code
+
+
+@auth_bp.route("/user-details", methods=["POST"])
+def add_user_details():
+    # Ensure user is logged in and user_id is available in session
+    user_id = session.get("user_id")
+    if not user_id:
+        return jsonify({"error": "User not logged in"}), 401
+
+    # Get user details from the request body
+    data = request.json
+    required_fields = ["weight", "height", "age", "gender", "activity_level"]
+
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": "Missing required fields"}), 400
+
     weight = data["weight"]
     height = data["height"]
     age = data["age"]
     gender = data["gender"]
+    activity_level = data["activity_level"]
 
-    # Call AuthService to create a new user
-    response, status_code = AuthService.create_user(username, password, email, weight, height, age, gender)
+    # Call AuthService to add user details
+    response, status_code = AuthService.create_user_details(user_id, weight, height, age, gender, activity_level)
     return jsonify(response), status_code
+
 
 @auth_bp.route("/login", methods=["POST"])
 def login():

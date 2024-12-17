@@ -2,7 +2,7 @@ from flask import session
 from ..models.user import User
 from ..models.user_details import UserDetails
 from werkzeug.security import check_password_hash, generate_password_hash
-from ..db import get_db
+from app.db import get_db
 
 
 class AuthService:
@@ -11,16 +11,12 @@ class AuthService:
     """
     
     @staticmethod
-    def create_user(username, password, email, weight, height, age, gender):
+    def create_user(username, password, email):
         """
         Creates a new user and user details
         :param username: Username of the user.
         :param password: Plain text password (hashed before saving).
         :param email: Email of the user.
-        :param weight: User's weight.
-        :param height: User's height.
-        :param age: User's age.
-        :param gender: User's gender.
         :return: Success or error message as a dictionary.
         """
         db = get_db()
@@ -41,20 +37,42 @@ class AuthService:
                 (username, hashed_password, email)
             )
             user_id = cursor.lastrowid
-
-            # Insert the new user details into the database
-            cursor.execute(
-                """
-                INSERT INTO user_details (user_id, weight, height, age, gender)
-                VALUES (?, ?, ?, ?, ?)
-                """,
-                (user_id, weight, height, age, gender)
-            )
             db.commit()
-            return {"message": "User created successfully", "user_id": user_id},
+            return {"message": "User created successfully", "user_id": user_id}, 201
         except db.IntegrityError as e:
             db.rollback()
             return  {"error": "Failed to create user: Username or email already exists"}, 400
+        except Exception as e:
+            db.rollback()
+            print(e)
+            return {"error": f"Unexpected error: {str(e)}"}, 500
+
+        finally:
+            cursor.close()
+
+    @staticmethod
+    def create_user_details (user_id, weight, height, age, gender, activity_level):
+        """
+        Creates user details with user_id
+        :param user_id: user_id of the user.
+        :param weight: weight of the user.
+        :param height: height of the user.
+        :param age: age of the user
+        :param gender: gender of the user
+        :param activity_level: activity_level of the user
+        :return: Success or error message as a dictionary.
+        """
+        db = get_db()
+        cursor = db.cursor()
+        try:
+            #Insert user_details into the database
+            cursor.execute(
+                """INSERT INTO user_details (user_id, weight, height, age, gender, activity_level) 
+                VALUES (?, ?, ?, ?, ?, ?)""",
+                (user_id, weight, height, age, gender, activity_level)
+            )
+            db.commit()
+            return {"message": "User details added successfully"}, 201
         except Exception as e:
             db.rollback()
             return {"error": f"Unexpected error: {str(e)}"}, 500

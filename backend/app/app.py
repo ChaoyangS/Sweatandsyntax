@@ -12,7 +12,7 @@
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 # app.config['DEBUG'] = os.getenv('DEBUG', 'False').lower() == 'true'
 
-from ..app import create_app
+from app import create_app
 
 #create the Flask app instance
 app = create_app()

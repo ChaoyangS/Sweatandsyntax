@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom"; // Import navigate and useLocation
+import { useNavigate, useLocation } from "react-router-dom";
+import {addUserDetails} from "../services/api.js"; // Import navigate and useLocation
 
 const UserInputForm = () => {
   const location = useLocation(); // Get the user info from previous page (SignUp)
@@ -10,11 +11,12 @@ const UserInputForm = () => {
   const [height, setHeight] = useState("");
   const [activityLevel, setActivityLevel] = useState("");
   const [gender, setGender] = useState(""); // New state for gender
+  const [message, setMessage] = useState(""); // for feedback messages
 
   // Destructure the name and email from the previous page's state
   const { name, email } = location.state || {};
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!age || !weight || !height || !activityLevel || !gender) {
@@ -32,6 +34,10 @@ const UserInputForm = () => {
       activityLevel,
       gender, // Include gender in the form data
     };
+
+    //call the API to send the form data
+    const response = await addUserDetails(formData);
+    setMessage(response.data.message || "Sign-up successful!");
 
     // Redirect to the summary page and pass the form data
     navigate("/summary", { state: formData });

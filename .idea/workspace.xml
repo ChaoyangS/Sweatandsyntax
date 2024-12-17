@@ -5,24 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b1dfbc1-4c97-47c8-9268-7caaac35a207" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/.idea/backend.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/services/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/db/mock_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db/mock_data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/db/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/routes/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/routes/auth_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/hello.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/routes/auth_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/routes/auth_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/services/auth_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/services/auth_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/Activate.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/Activate.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/activate" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/activate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/activate.csh" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/activate.csh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/activate.fish" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/activate.fish" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/dotenv" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/dotenv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/flask" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/flask" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/pip" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/pip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/venv/bin/pip3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/bin/pip3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/venv/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/venv/pyvenv.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/services/workouts_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/services/workouts_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/instance/db.sqlite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserInputForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserInputForm.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +33,7 @@
       <list>
         <option value="SQL File" />
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -50,8 +50,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.__init__.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/tian/Desktop/School/UPenn /Fall 2024/Hackathon/workspace/repo/Sweatandsyntax/backend/app/db",
     "node.js.detected.package.eslint": "true",
@@ -60,6 +62,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "configurable.group.language",
+    "ts.external.directory.path": "/Users/tian/Applications/PyCharm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -77,13 +80,41 @@
       <recent name="$PROJECT_DIR$/backend/app/db" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.__init__">
     <configuration name="mock_data.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/backend/app/db/mock_data.sql" />
       <script-mode>FILE</script-mode>
       <data-source id="7f2981b1-9942-4833-851f-5f986554eb93" />
       <method v="2" />
     </configuration>
+    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Sweatandsyntax" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend/app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/app/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.__init__" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -94,11 +125,26 @@
       <option name="presentableId" value="Default" />
       <updated>1733985449011</updated>
       <workItem from="1734030107397" duration="44390000" />
-      <workItem from="1734302294756" duration="22826000" />
+      <workItem from="1734302294756" duration="23155000" />
+      <workItem from="1734415818367" duration="12614000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Sweatandsyntax$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1734469128846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/app" />
   </component>
 </project>
