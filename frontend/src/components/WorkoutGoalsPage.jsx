@@ -96,13 +96,13 @@ const WorkoutGoalsPage = () => {
                   type="button"
                   className={`btn btn-outline-primary m-2 ${focusPart.includes(part.id) ? "active" : ""}`}
                   onClick={() => handleFocusPartClick(part.id)}
-                  style={{ width: "25%", marginBottom: "0px" }} // Button width set to 30% for 3 in a row
+                  style={{ width: "25%", marginBottom: "5px" }} // Button width set to 30% for 3 in a row
                 >
                   <img
                     src={part.image}
                     alt={part.label}
                     className="img-fluid"
-                    style={{ width: '50px', height: '50px' }}
+                    style={{ width: '80px', height: '80px', marginTop: "8px" }}
                   />
                   <p>{part.label}</p>
                 </button>

@@ -36,7 +36,7 @@
   /* Override the default outline button style */
 .btn-outline-primary {
   border-color: #bfc9c9 !important;  /* Default blue border */
-  color: #bfc9c9 !important;  /* Default blue text */
+  color: #424747 !important;  /* Default blue text */
   border-color: #323636 !important;
 }
 
@@ -53,4 +53,40 @@
   background-color: #9cb5be !important; /* Darker blue for active state */
   border-color: #dcdddd !important;
   color: white !important;
+}
+
+
+.checkmark-button {
+  position: relative !important;
+  padding: 10px 20px !important;
+  font-size: 16px !important;
+  border: 2px solid #007bff !important;
+  border-radius: 8px !important;
+  background-color: white !important;
+  color: #007bff !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s, color 0.3s !important;
+}
+
+.checkmark-button.selected {
+  background-color: #007bff !important;
+  color: white !important;
+}
+
+.checkmark-button::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 5px !important;
+  left: 5px !important;
+  width: 12px !important;
+  height: 12px !important;
+  border: 2px solid white !important;
+  border-width: 0 2px 2px 0 !important;
+  transform: rotate(45deg) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s !important;
+}
+
+.checkmark-button.selected::before {
+  opacity: 1 !important;
 }
