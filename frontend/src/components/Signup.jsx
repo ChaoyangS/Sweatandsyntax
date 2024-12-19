@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import { signup } from "../services/api";
-import "../styles/SignUpPage.css"; // Import the CSS file
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import signupImage from "../assets/images/signuppageimage.jpg"; // Import the image
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -9,15 +12,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // Hook to navigate to another page
-
-  // Capitalize first letter of name
-  const handleNameChange = (e) => {
-    let inputName = e.target.value;
-    inputName =
-      inputName.charAt(0).toUpperCase() + inputName.slice(1).toLowerCase(); // Capitalize first letter
-    setName(inputName); // Update name state with the formatted name
-  };
+  const navigate = useNavigate();
 
   const validateForm = () => {
     return (
@@ -32,74 +27,91 @@ const SignUp = () => {
     event.preventDefault();
 
     if (!validateForm()) {
-      alert ("Please fill in all fields correctly!");
+      alert("Please fill in all fields correctly!");
       return;
     }
 
     try {
-      //send sign-up request to the back-end
       const formData = { username: name, password, email };
       const response = await signup(formData);
 
       setMessage(response.data.message || "Sign-up successful!");
-      // After successful sign-up, navigate to the UserInputForm page
-      navigate("/user-input", {
-      state: { name, email }, // Pass the name and email to the next page
-    });
+      navigate("/login");
     } catch (error) {
       setMessage(error.response?.data.error || "Please try again");
     }
   };
 
   return (
-    <div className="SignUp">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <input
-            type="text"
-            value={name}
-            onChange={handleNameChange} // Use the handleNameChange function
-            required
+    <Container fluid className="vh-100">
+      <Row className="h-100 g-0">
+        {/* Left side with image */}
+        <Col md={5} className="d-none d-md-block p-0">
+          <img
+            src={signupImage}
+            alt="Sign Up"
+            className="img-fluid h-100"
+            style={{ objectFit: "cover", width: "100%" }}
           />
-        </div>
+        </Col>
 
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+        {/* Right side with form */}
+        <Col
+          md={7} lg={7}  // Adjust to give more width on larger screens
+          className="d-flex align-items-center justify-content-center px-5"
+        >
+          <div className="signup-form-container" style={{ width: "60%" }}>
+            <h2 className="text-center mb-4">Sign Up</h2>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="name" className="mb-3">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  style={{ width: "100%" }}
+                />
+              </Form.Group>
 
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+              <Form.Group controlId="email" className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </Form.Group>
 
-        <div>
-          <label>Confirm Password</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
+              <Form.Group controlId="password" className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </Form.Group>
 
-        <button type="submit" disabled={!validateForm()}>
-          Sign Up
-        </button>
-      </form>
-    </div>
+              <Form.Group controlId="confirmPassword" className="mb-4">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
+              </Form.Group>
+
+              <Button className="custom-button" type="submit" disabled={!validateForm()}>
+                Sign Up  <FontAwesomeIcon icon={faArrowRight} />
+              </Button>
+            </Form>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

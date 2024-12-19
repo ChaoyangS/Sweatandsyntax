@@ -5,7 +5,7 @@ import UserProfile from "../../components/UserProfile";
 function PersonalPage() {
   return (
     <>
-      <Header />
+      
       <UserProfile />
     </>
   );

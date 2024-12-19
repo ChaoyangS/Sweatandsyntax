@@ -22,10 +22,15 @@ const SummaryPage = () => {
   };
 
   return (
-    <div className="summary-container">
-      <div className="left-column">
-        <h2>Hi, {name}!</h2>
-        <p>We have generated your basic profile:</p>
+    <div className="summary-container container my-5 d-flex">
+      {/* Left side container for profile details */}
+      <div className="col-md-6" style={{ padding: "20px" }}>
+        <h2 className="summary-header mb-4" style={{ fontSize: '35px' }}>
+          Hi, {name}!
+        </h2>
+        <p className="summary-subheader mb-4" style={{ color: 'grey', fontSize: '22px', fontWeight: '300' }}>
+          We have generated your basic profile:
+        </p>
 
         <div className="profile-details">
           <p>
@@ -52,12 +57,25 @@ const SummaryPage = () => {
           <p className="highlight-text">
             We'd like to know more about your workout goals!
           </p>
-          <button onClick={handleGoToWorkout}>Continue</button>
+          <button onClick={handleGoToWorkout} className="custom-button w-100">
+            Continue
+          </button>
         </div>
       </div>
 
-      <div className="right-column">
-        <img src={profileImage} alt="Profile" />
+      {/* Right side container for the profile image */}
+      <div className="col-md-6 d-flex align-items-center justify-content-center px-5" style={{ padding: "20px" }}>
+        <img
+          src={profileImage}
+          alt="Profile"
+          className="img-fluid"
+          style={{
+            maxWidth: "70%",
+            display: "block",
+            borderRadius: "8px",
+            marginTop: "120px",
+          }}
+        />
       </div>
     </div>
   );

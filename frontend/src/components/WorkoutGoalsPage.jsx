@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../styles/WorkoutGoalsPage.css";
+import "../styles/WorkoutGoalsPage.css"; // If you still want to keep custom styles, you can override Bootstrap styles here
 
 // Import the images for the body parts
 import legsImage from "../assets/images/legs.png";
@@ -9,6 +9,7 @@ import absImage from "../assets/images/abs.png";
 import armsImage from "../assets/images/arms.png";
 import backImage from "../assets/images/back.png";
 import shoulderImage from "../assets/images/shoulder.png";
+import workoutGoalImage from "../assets/images/workoutgoal-image.jpg"; // The image for the left side
 
 const WorkoutGoalsPage = () => {
   const location = useLocation(); // Get the passed data
@@ -53,105 +54,132 @@ const WorkoutGoalsPage = () => {
   };
 
   return (
-    <div className="workout-goals-page">
-      <h2>Hello, {name}! Let's get to know your workout goals.</h2>
-      <form onSubmit={handleSubmit}>
-        {/* Question 1: Which body part do you mostly want to focus on? */}
-        <div>
-          <label>Which body part do you mostly want to focus on?</label>
-          <div className="focus-part-buttons">
-            {[
-              { id: "legs", image: legsImage, label: "Legs" },
-              { id: "chest", image: chestImage, label: "Chest" },
-              { id: "abs", image: absImage, label: "Abs" },
-              { id: "arms", image: armsImage, label: "Arms" },
-              { id: "back", image: backImage, label: "Back" },
-              { id: "shoulder", image: shoulderImage, label: "Shoulders" },
-            ].map((part) => (
-              <button
-                key={part.id}
-                type="button"
-                className={`image-option ${
-                  focusPart.includes(part.id) ? "selected" : ""
-                }`}
-                onClick={() => handleFocusPartClick(part.id)} // Call the handler
-              >
-                <img src={part.image} alt={part.label} />
-                <p>{part.label}</p>
-              </button>
-            ))}
-          </div>
-        </div>
+    <div className="WorkoutGoalsPage container my-5 d-flex">
+      {/* Left side container for the image and text */}
+      <div className="col-md-6" style={{ padding: "20px" }}>
+        <h2 className="workout-goals-header mb-4" style={{ fontSize: '35px', marginTop: '120px' }}>
+          Hello, {name}! Let's get to know your workout goals.
+        </h2>
+        <h3 className="workout-goals-subheader mb-4" style={{ color: 'grey', fontSize: '22px', fontWeight: '300' }}>
+          Based on your answers, we will suggest features that work best for you.
+        </h3>
+        <img
+          src={workoutGoalImage}
+          alt="Workout Goal"
+          className="img-fluid"
+          style={{
+            maxWidth: "80%",
+            margin: "0 auto",
+            display: "block",
+            borderRadius: "8px",
+          }}
+        />
+      </div>
 
-        {/* Question 2: How often can you work out a week? */}
-        <div>
-          <label>How often can you work out a week?</label>
-          <div className="workout-frequency-buttons">
-            {[1, 2, 3, 4, 5, 6, 7].map((day) => (
-              <button
-                type="button"
-                key={day}
-                className={`frequency-option ${
-                  workoutFrequency === day ? "selected" : ""
-                }`}
-                onClick={() => setWorkoutFrequency(day)}
-              >
-                {day} day{day > 1 ? "s" : ""}
-              </button>
-            ))}
-          </div>
-        </div>
+      {/* Right side container for the form */}
+      <div className="col-md-6 d-flex align-items-center justify-content-center px-5" style={{ padding: '20px' }}>
+        <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+          {/* Question 1: Which body part do you mostly want to focus on? */}
+          <fieldset className="mb-4">
+            <legend className="form-label">Which body part do you mostly want to focus on?</legend>
+            <div className="d-flex flex-wrap justify-content-between">
+              {[ 
+                { id: "legs", image: legsImage, label: "Legs" },
+                { id: "chest", image: chestImage, label: "Chest" },
+                { id: "abs", image: absImage, label: "Abs" },
+                { id: "arms", image: armsImage, label: "Arms" },
+                { id: "back", image: backImage, label: "Back" },
+                { id: "shoulder", image: shoulderImage, label: "Shoulders" },
+              ].map((part) => (
+                <button
+                  key={part.id}
+                  type="button"
+                  className={`btn btn-outline-primary m-2 ${focusPart.includes(part.id) ? "active" : ""}`}
+                  onClick={() => handleFocusPartClick(part.id)}
+                  style={{ width: "25%", marginBottom: "0px" }} // Button width set to 30% for 3 in a row
+                >
+                  <img
+                    src={part.image}
+                    alt={part.label}
+                    className="img-fluid"
+                    style={{ width: '50px', height: '50px' }}
+                  />
+                  <p>{part.label}</p>
+                </button>
+              ))}
+            </div>
+          </fieldset>
 
-        {/* Question 3: What is your general workout goal? */}
-        <div>
-          <label>What is your general workout goal?</label>
-          <div className="workout-goal-buttons">
-            {["Cutting", "Bulking", "Maintaining"].map((goal) => (
-              <button
-                type="button"
-                key={goal}
-                className={`goal-button ${
-                  workoutGoal === goal ? "selected" : ""
-                }`}
-                onClick={() => setWorkoutGoal(goal)}
-              >
-                {goal}
-              </button>
-            ))}
-          </div>
-        </div>
+          {/* Question 2: How often can you work out a week? */}
+          <fieldset className="mb-4">
+            <legend className="form-label">How often can you work out a week?</legend>
+            <div className="btn-group d-flex justify-content-between flex-wrap" role="group">
+              {[1, 2, 3, 4, 5, 6, 7].map((day) => (
+                <button
+                  type="button"
+                  key={day}
+                  className={`btn btn-outline-primary ${workoutFrequency === day ? "active" : ""}`}
+                  onClick={() => setWorkoutFrequency(day)}
+                  style={{ width: "14%", marginBottom: "10px" }} // Set button width for multiple options
+                >
+                  {day} day{day > 1 ? "s" : ""}
+                </button>
+              ))}
+            </div>
+          </fieldset>
 
-        {/* Question 4: What equipment do you usually use? */}
-        <div>
-          <label>What equipment do you usually use?</label>
-          <div className="equipment-buttons">
-            {["Body Weight", "Gym Equipment"].map((option) => (
-              <button
-                type="button"
-                key={option}
-                className={`equipment-option ${
-                  equipment === option ? "selected" : ""
-                }`}
-                onClick={() => setEquipment(option)}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
-        </div>
+          {/* Question 3: What is your general workout goal? */}
+          <fieldset className="mb-4">
+            <legend className="form-label">What is your general workout goal?</legend>
+            <div className="btn-group d-flex justify-content-between flex-wrap" role="group">
+              {["Cutting", "Bulking", "Maintaining"].map((goal) => (
+                <button
+                  type="button"
+                  key={goal}
+                  className={`btn btn-outline-primary ${workoutGoal === goal ? "active" : ""}`}
+                  onClick={() => setWorkoutGoal(goal)}
+                  style={{ width: "30%", marginBottom: "10px" }} // Set width for goal options
+                >
+                  {goal}
+                </button>
+              ))}
+            </div>
+          </fieldset>
 
-        <button
-          type="submit"
-          disabled={
-            focusPart.length === 0 || // Ensure at least one body part is selected
-            workoutFrequency === null ||
-            !workoutGoal ||
-            !equipment
-          }
-        >
-          Continue
-        </button>
-      </form>
+          {/* Question 4: What equipment do you usually use? */}
+          <fieldset className="mb-4">
+            <legend className="form-label">What equipment do you usually use?</legend>
+            <div className="btn-group d-flex justify-content-between flex-wrap" role="group">
+              {["Body Weight", "Gym Equipment"].map((option) => (
+                <button
+                  type="button"
+                  key={option}
+                  className={`btn btn-outline-primary ${equipment === option ? "active" : ""}`}
+                  onClick={() => setEquipment(option)}
+                  style={{ width: "45%", marginBottom: "10px" }} // Set width for equipment options
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+
+          {/* Submit button */}
+          <button
+            type="submit"
+            className="custom-button w-100"
+            disabled={
+              focusPart.length === 0 || 
+              workoutFrequency === null ||
+              !workoutGoal ||
+              !equipment
+            }
+            style={{ width: '100%', padding: '10px', fontSize: '18px' }} // Style for the continue button
+          >
+            Explore your workout plan
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
