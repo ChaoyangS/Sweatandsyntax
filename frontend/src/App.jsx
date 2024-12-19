@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Im
 import './styles/Global.css'; // Ensure the correct path based on your folder structure
 
 
-import SignUp from "./components/SignUp"; // Import SignUp component
+import SignUp from "./components/Signup"; // Import SignUp component
 import Login from "./components/Login"; // Import Login component
 import UserInputForm from "./components/UserInputForm"; // Import UserInputForm component
 import SummaryPage from "./components/SummaryPage"; // Import SummaryPage component
