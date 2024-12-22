@@ -1,69 +1,67 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import "../styles/WorkoutGoalsPage.css"; // If you still want to keep custom styles, you can override Bootstrap styles here
+import { useNavigate, useLocation } from "react-router-dom";
+import { addUserDetails } from "../services/api"; // Import API function
+import userInputImage from '../assets/images/userinputform-image.png'; // Import image
+import { Col } from 'react-bootstrap'; // Import Col from react-bootstrap
 
-// Import the images for the body parts
-import legsImage from "../assets/images/legs.png";
-import chestImage from "../assets/images/chest.png";
-import absImage from "../assets/images/abs.png";
-import armsImage from "../assets/images/arms.png";
-import backImage from "../assets/images/back.png";
-import shoulderImage from "../assets/images/shoulder.png";
-import workoutGoalImage from "../assets/images/workoutgoal-image.jpg"; // The image for the left side
+const UserInputForm = () => {
+  const location = useLocation(); // Get user info from the previous page (SignUp)
+  const navigate = useNavigate();
 
-const WorkoutGoalsPage = () => {
-  const location = useLocation(); // Get the passed data
-  const navigate = useNavigate(); // To navigate to the next page
+  const [age, setAge] = useState("");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [activityLevel, setActivityLevel] = useState("");
+  const [gender, setGender] = useState("");
+  const [message, setMessage] = useState("");
 
-  const { name, age, weight, height, activityLevel } = location.state || {}; // Extract the state passed from SummaryPage
+  // Destructure the name and email from the previous page's state
+  const { name = "User", email = "" } = location.state || {};
 
-  // Define the state for the user's input
-  const [focusPart, setFocusPart] = useState([]); // Change focusPart to an array
-  const [workoutFrequency, setWorkoutFrequency] = useState(null);
-  const [workoutGoal, setWorkoutGoal] = useState("");
-  const [equipment, setEquipment] = useState(""); // New state for equipment
+  // Helper function to capitalize the first letter
+  const capitalize = (str) => str && str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Redirect to the next page, passing the answers as state
-    navigate("/summary", {
-      state: {
-        name,
-        age,
-        weight,
-        height,
-        activityLevel,
-        focusPart, // Pass the array of selected focus parts
-        workoutFrequency,
-        workoutGoal,
-        equipment, // Include equipment in the passed state
-      },
-    });
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  // Handle adding/removing focus parts
-  const handleFocusPartClick = (part) => {
-    if (focusPart.includes(part)) {
-      // If part is already selected, remove it
-      setFocusPart(focusPart.filter((item) => item !== part));
-    } else {
-      // Otherwise, add it to the selected parts
-      setFocusPart([...focusPart, part]);
+    if (!age || !weight || !height || !activityLevel || !gender) {
+      alert("Please fill out all fields!");
+      return;
+    }
+
+    const formData = {
+      name,
+      email,
+      age,
+      weight,
+      height,
+      activityLevel,
+      gender,
+    };
+
+    try {
+      const response = await addUserDetails(formData);
+      console.log("API Response:", response); // Debug response
+      setMessage(response.data.message || "Details submitted successfully!");
+      navigate("/workout-goals", { state: formData }); // Ensure correct path
+    } catch (error) {
+      console.error("Submission Error:", error);
+      setMessage(error.response?.data.error || "Error submitting details.");
     }
   };
 
   return (
-    <div className="WorkoutGoalsPage container my-5 d-flex">
-      {/* Left side container for the image and text */}
+    <div className="UserInputForm container my-5 d-flex">
       <div className="col-md-6" style={{ padding: "20px" }}>
-        <h2 className="workout-goals-header mb-4">Hello, {name}! Let's get to know your workout goals.</h2>
-        <h3 className="workout-goals-subheader mb-4">
+        <h2 className="text-center mb-4" style={{ fontSize: "35px", marginTop: "120px" }}>
+          Hi, {capitalize(name)}! We'd like to get to know you
+        </h2>
+        <h3 className="text-center mb-4" style={{ color: "grey", fontSize: "22px", fontWeight: "300" }}>
           Based on your answers, we will suggest features that work best for you.
         </h3>
         <img
-          src={workoutGoalImage}
-          alt="Workout Goal"
+          src={userInputImage}
+          alt="User Input Form"
           className="img-fluid"
           style={{
             maxWidth: "80%",
@@ -74,107 +72,160 @@ const WorkoutGoalsPage = () => {
         />
       </div>
 
-      {/* Right side container for the form */}
-      <div className="col-md-6 d-flex align-items-center justify-content-center px-5" style={{ padding: '20px' }}>
-        <form onSubmit={handleSubmit} style={{ width: '80%' }}>
-          {/* Question 1: Which body part do you mostly want to focus on? */}
-          <fieldset className="mb-4">
-            <legend className="form-label">Which body part do you mostly want to focus on?</legend>
-            <div className="d-flex justify-content-around flex-wrap">
-              {[ 
-                { id: "legs", image: legsImage, label: "Legs" },
-                { id: "chest", image: chestImage, label: "Chest" },
-                { id: "abs", image: absImage, label: "Abs" },
-                { id: "arms", image: armsImage, label: "Arms" },
-                { id: "back", image: backImage, label: "Back" },
-                { id: "shoulder", image: shoulderImage, label: "Shoulders" },
-              ].map((part) => (
-                <button
-                  key={part.id}
-                  type="button"
-                  className={`btn btn-outline-primary m-2 ${focusPart.includes(part.id) ? "active" : ""}`}
-                  onClick={() => handleFocusPartClick(part.id)}
-                >
-                  <img
-                    src={part.image}
-                    alt={part.label}
-                    className="img-fluid"
-                    style={{ width: '50px', height: '50px' }}
-                  />
-                  <p>{part.label}</p>
-                </button>
-              ))}
+      <Col
+        md={7}
+        lg={7}
+        className="d-flex align-items-center justify-content-center px-5"
+        style={{ padding: "20px" }}
+      >
+        <form onSubmit={handleSubmit} style={{ width: "80%" }}>
+          <fieldset className="mb-3">
+            <legend className="form-label">Age:</legend>
+            <input
+              type="number"
+              id="age"
+              className="form-control"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              required
+              placeholder="Enter your age"
+            />
+          </fieldset>
+
+          <fieldset className="mb-3">
+            <legend className="form-label">Weight (kg):</legend>
+            <input
+              type="number"
+              id="weight"
+              className="form-control"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+              required
+              placeholder="Enter your weight"
+            />
+          </fieldset>
+
+          <fieldset className="mb-3">
+            <legend className="form-label">Height (cm):</legend>
+            <input
+              type="number"
+              id="height"
+              className="form-control"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+              required
+              placeholder="Enter your height in cm"
+            />
+          </fieldset>
+
+          <fieldset className="mb-3">
+            <legend className="form-label">Gender:</legend>
+            <div className="form-check">
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                className="form-check-input"
+                value="Male"
+                onChange={(e) => setGender(e.target.value)}
+                required
+              />
+              <label htmlFor="male" className="form-check-label">
+                Male
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                type="radio"
+                id="female"
+                name="gender"
+                className="form-check-input"
+                value="Female"
+                onChange={(e) => setGender(e.target.value)}
+              />
+              <label htmlFor="female" className="form-check-label">
+                Female
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                type="radio"
+                id="other"
+                name="gender"
+                className="form-check-input"
+                value="Other"
+                onChange={(e) => setGender(e.target.value)}
+              />
+              <label htmlFor="other" className="form-check-label">
+                Other
+              </label>
             </div>
           </fieldset>
 
-          {/* Question 2: How often can you work out a week? */}
-          <fieldset className="mb-4">
-            <legend className="form-label">How often can you work out a week?</legend>
-            <div className="btn-group" role="group">
-              {[1, 2, 3, 4, 5, 6, 7].map((day) => (
-                <button
-                  type="button"
-                  key={day}
-                  className={`btn btn-outline-primary ${workoutFrequency === day ? "active" : ""}`}
-                  onClick={() => setWorkoutFrequency(day)}
-                >
-                  {day} day{day > 1 ? "s" : ""}
-                </button>
-              ))}
+          <fieldset className="mb-3">
+            <legend className="form-label">How active are you?</legend>
+            <div className="form-check">
+              <input
+                type="radio"
+                id="sedentary"
+                name="activityLevel"
+                className="form-check-input"
+                value="Sedentary"
+                onChange={(e) => setActivityLevel(e.target.value)}
+                required
+              />
+              <label htmlFor="sedentary" className="form-check-label">
+                Sedentary (little to no exercise)
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                type="radio"
+                id="light"
+                name="activityLevel"
+                className="form-check-input"
+                value="Lightly Active"
+                onChange={(e) => setActivityLevel(e.target.value)}
+              />
+              <label htmlFor="light" className="form-check-label">
+                Lightly Active (light exercise 1-3 days/week)
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                type="radio"
+                id="moderate"
+                name="activityLevel"
+                className="form-check-input"
+                value="Moderately Active"
+                onChange={(e) => setActivityLevel(e.target.value)}
+              />
+              <label htmlFor="moderate" className="form-check-label">
+                Moderately Active (moderate exercise 3-5 days/week)
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                type="radio"
+                id="veryActive"
+                name="activityLevel"
+                className="form-check-input"
+                value="Very Active"
+                onChange={(e) => setActivityLevel(e.target.value)}
+              />
+              <label htmlFor="veryActive" className="form-check-label">
+                Very Active (hard exercise 6-7 days/week)
+              </label>
             </div>
           </fieldset>
 
-          {/* Question 3: What is your general workout goal? */}
-          <fieldset className="mb-4">
-            <legend className="form-label">What is your general workout goal?</legend>
-            <div className="btn-group" role="group">
-              {["Cutting", "Bulking", "Maintaining"].map((goal) => (
-                <button
-                  type="button"
-                  key={goal}
-                  className={`btn btn-outline-primary ${workoutGoal === goal ? "active" : ""}`}
-                  onClick={() => setWorkoutGoal(goal)}
-                >
-                  {goal}
-                </button>
-              ))}
-            </div>
-          </fieldset>
-
-          {/* Question 4: What equipment do you usually use? */}
-          <fieldset className="mb-4">
-            <legend className="form-label">What equipment do you usually use?</legend>
-            <div className="btn-group" role="group">
-              {["Body Weight", "Gym Equipment"].map((option) => (
-                <button
-                  type="button"
-                  key={option}
-                  className={`btn btn-outline-primary ${equipment === option ? "active" : ""}`}
-                  onClick={() => setEquipment(option)}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </fieldset>
-
-          {/* Submit button */}
-          <button
-            type="submit"
-            className="custom-button w-100"
-            disabled={
-              focusPart.length === 0 || 
-              workoutFrequency === null ||
-              !workoutGoal ||
-              !equipment
-            }
-          >
-            Continue
+          <button type="submit" className="custom-button">
+            Submit
           </button>
         </form>
-      </div>
+      </Col>
     </div>
   );
 };
 
-export default WorkoutGoalsPage;
+export default UserInputForm;
