@@ -5,23 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b1dfbc1-4c97-47c8-9268-7caaac35a207" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/.idea/backend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/services/api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/dal/base_dal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/dal/user_dao.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/dal/workout_dao.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/models/user_workout_goal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/routes/workout_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/hello.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/db/mock_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db/mock_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/db/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/models/user_details.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/user_details.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/models/workout_plan.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/workout_plan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/routes/auth_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/routes/auth_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/services/auth_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/services/auth_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/services/workouts_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/services/workouts_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/services/workouts_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/services/workout_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/instance/db.sqlite" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Signup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserInputForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserInputForm.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +32,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="SQL File" />
-        <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -48,29 +48,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.__init__.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/tian/Desktop/School/UPenn /Fall 2024/Hackathon/workspace/repo/Sweatandsyntax/backend/app/db",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.language",
-    "ts.external.directory.path": "/Users/tian/Applications/PyCharm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/tian/Desktop/School/UPenn /Fall 2024/Hackathon/workspace/repo/Sweatandsyntax/backend/app/db&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/tian/Applications/PyCharm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "RunConfigurationTargetLRU": [
-      "7f2981b1-9942-4833-851f-5f986554eb93"
+  &quot;keyToStringList&quot;: {
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;7f2981b1-9942-4833-851f-5f986554eb93&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/backend/app/db" />
@@ -126,7 +126,8 @@
       <updated>1733985449011</updated>
       <workItem from="1734030107397" duration="44390000" />
       <workItem from="1734302294756" duration="23155000" />
-      <workItem from="1734415818367" duration="12614000" />
+      <workItem from="1734415818367" duration="13240000" />
+      <workItem from="1734827335629" duration="27304000" />
     </task>
     <servers />
   </component>

@@ -22,7 +22,6 @@ class UserDetails:
         self.height = height
         self.age = age
         self.gender = gender
-        self.muscle = muscle
         self.activity_level = activity_level
 
 
@@ -38,6 +37,5 @@ class UserDetails:
             'height': self.height,
             'age' : self.age,
             'gender': self.gender,
-            'muscle': self.muscle,
             'activity_level' : self.activity_level
         }

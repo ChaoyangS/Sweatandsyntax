@@ -1,6 +1,7 @@
 from flask import session
 from ..models.user import User
 from ..models.user_details import UserDetails
+from ..dal.user_dao import UserDAO
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db import get_db
 
@@ -19,39 +20,15 @@ class AuthService:
         :param email: Email of the user.
         :return: Success or error message as a dictionary.
         """
-        db = get_db()
-        hashed_password = generate_password_hash(password)
-        cursor = db.cursor()
-        try:
-            # check if the username or email already exists
-            cursor.execute(
-                "SELECT * FROM user WHERE username = ? OR email = ?",
-                (username, email)
-            )
-            existing_user = cursor.fetchone()
-            if existing_user:
-                return {"error": "Username or email already exists"}, 400
-            #Insert the new user into the database
-            cursor.execute(
-                "INSERT INTO user (username, password, email) VALUES (?, ?, ?)",
-                (username, hashed_password, email)
-            )
-            user_id = cursor.lastrowid
-            db.commit()
-            return {"message": "User created successfully", "user_id": user_id}, 201
-        except db.IntegrityError as e:
-            db.rollback()
-            return  {"error": "Failed to create user: Username or email already exists"}, 400
-        except Exception as e:
-            db.rollback()
-            print(e)
-            return {"error": f"Unexpected error: {str(e)}"}, 500
 
-        finally:
-            cursor.close()
+        hashed_password = generate_password_hash(password)
+        if UserDAO().get_user_by_username_or_email(username, email):
+            return {"error": "Username or email already exists"}, 400
+        user_id = UserDAO().create_user(username, hashed_password, email)
+        return {"message": "User created successfully", "user_id": user_id}, 201
 
     @staticmethod
-    def create_user_details (user_id, weight, height, age, gender, activity_level):
+    def create_user_details (user_id, weight, height, age, gender, level):
         """
         Creates user details with user_id
         :param user_id: user_id of the user.
@@ -59,25 +36,13 @@ class AuthService:
         :param height: height of the user.
         :param age: age of the user
         :param gender: gender of the user
-        :param activity_level: activity_level of the user
+        :param level: activity_level of the user
         :return: Success or error message as a dictionary.
         """
-        db = get_db()
-        cursor = db.cursor()
-        try:
-            #Insert user_details into the database
-            cursor.execute(
-                """INSERT INTO user_details (user_id, weight, height, age, gender, activity_level) 
-                VALUES (?, ?, ?, ?, ?, ?)""",
-                (user_id, weight, height, age, gender, activity_level)
-            )
-            db.commit()
-            return {"message": "User details added successfully"}, 201
-        except Exception as e:
-            db.rollback()
-            return {"error": f"Unexpected error: {str(e)}"}, 500
-        finally:
-            cursor.close()
+        UserDAO().create_user_details(user_id, weight, height, age, gender, level)
+        return {"message": "User details added successfully"}, 201
+
+
 
     @staticmethod
     def login_user(username, password):

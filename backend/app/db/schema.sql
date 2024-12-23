@@ -24,9 +24,20 @@ CREATE TABLE user_details (
     height REAL NOT NULL,
     age INTEGER,
     gender TEXT CHECK (gender IN ('Male', 'Female', 'Other')),
-    muscle TEXT,
-    activity_level TEXT, -- e.g., 'Low', 'Moderate', 'High'
+    level TEXT, -- e.g., 'beginner', 'intermediate', 'advanced'
     FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE
+);
+
+-- User details table: stores personal details about the user
+CREATE TABLE user_workout_goal (
+    user_workout_goal_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    workout_goal REAL NOT NULL,
+    muscle REAL NOT NULL,
+    equipment REAL NOT NULL,
+    workout_plan_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE,
+    FOREIGN KEY (workout_plan_id) REFERENCES workout_plan (workout_plan_id) ON DELETE CASCADE
 );
 
 -- Workout plan table: stores workout plans

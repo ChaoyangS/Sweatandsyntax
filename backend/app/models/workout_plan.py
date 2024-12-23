@@ -3,7 +3,7 @@ class WorkoutPlan:
     workout_plan.py represents a Workout_Plan object
     """
 
-    def __init__(self, workout_plan_id, workout_name, days, goal, muscle, equipment, level, time_required, calories_burned):
+    def __init__(self, workout_plan_id, workout_name, days, goal, muscle, equipment, level):
         """
         Initiate a user instance
         :param workout_plan_id:  UserDetailsId from the database
@@ -24,11 +24,9 @@ class WorkoutPlan:
         self.muscle = muscle
         self.equipment = equipment
         self.level = level
-        self.time_required = time_required
-        self.calories_burned = calories_burned
 
 
-    def user_dict(self):
+    def to_dict(self):
         """
         Convert the user_details object to a dictionary
         :return: dictionary representation of the workout
@@ -40,7 +38,5 @@ class WorkoutPlan:
             "goal": self.goal,
             "muscle": self.muscle,
             "equipment": self.equipment,
-            "level": self.level,
-            "time_required": self.time_required,
-            "calories_burned": self.calories_burned,
+            "level": self.level
         }
