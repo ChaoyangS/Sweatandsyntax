@@ -36,7 +36,7 @@ const SignUp = () => {
       const response = await signup(formData);
 
       setMessage(response.data.message || "Sign-up successful!");
-      navigate("/login");
+      navigate("/user-input");
     } catch (error) {
       setMessage(error.response?.data.error || "Please try again");
     }
