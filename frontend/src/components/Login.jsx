@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "../styles/LoginPage.css";
-import { login } from "../services/api"; // Import the login API function
+import loginImage from "../assets/images/loginpageimage.jpg"; // Import the login image
+import { login } from "../services/api";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // For error messages
-  const navigate = useNavigate(); // Hook for navigation
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -19,14 +19,11 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      // Call the login API
       const response = await login({ email, password });
 
       if (response.data.success) {
-        // On successful login, navigate to UserInputForm
         navigate("/user-input");
       } else {
-        // Display an error message
         setError(response.data.message || "Invalid login credentials");
       }
     } catch (err) {
@@ -35,35 +32,69 @@ export default function Login() {
   }
 
   return (
-    <div className="Login">
-      <Form onSubmit={handleSubmit}>
-        <h2>Login</h2>
-
-        {error && <div className="error-message">{error}</div>} {/* Display error */}
-
-        <Form.Group size="lg" controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            autoFocus
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+    <Container fluid className="vh-100">
+      <Row className="h-100 g-0">
+        {/* Left side with image */}
+        <Col md={6} className="position-relative p-0">
+          <img
+            src={loginImage}
+            alt="Login"
+            className="img-fluid h-100"
+            style={{ objectFit: "cover", width: "100%" }}
           />
-        </Form.Group>
+          {/* Text overlay */}
+          <div
+            className="text-overlay"
+            style={{
+              position: "absolute",
+              top: "45%",
+              left: "5%",
+              color: "rgba(255, 255, 255, 0.9)",
+              fontSize: "2.5rem", // Larger text size
+            }}
+          >
+            Start your workout today <br /> with us
+          </div>
+        </Col>
 
-        <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
+        {/* Right side with form */}
+        <Col
+          md={6}
+          className="d-flex align-items-center justify-content-center px-5"
+        >
+          <div className="login-form-container" style={{ width: "70%" }}>
+            <h2 className="text-center mb-4">Login</h2>
+            <Form onSubmit={handleSubmit}>
+              {error && <div className="error-message text-danger mb-3">{error}</div>}
 
-        <Button block="true" size="lg" type="submit" disabled={!validateForm()}>
-          Login
-        </Button>
-      </Form>
-    </div>
+              <Form.Group controlId="email" className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  autoFocus
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group controlId="password" className="mb-4">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </Form.Group>
+
+              <Button className="custom-button" type="submit" disabled={!validateForm()}>
+                Login
+              </Button>
+            </Form>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 }
