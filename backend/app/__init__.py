@@ -23,7 +23,7 @@ def create_app(test_config=None):
     #insatnce_relative_config is ued to specify whether the flask app
     #should use configuration files
     app = Flask(__name__, instance_relative_config=True)
-    CORS(app)
+    CORS(app, supports_credentials=True)
 
     #load configuration from Config class
     app.config.from_object(Config)
@@ -37,4 +37,6 @@ def create_app(test_config=None):
 
     db_init_app(app)
 
+  
+    
     return app

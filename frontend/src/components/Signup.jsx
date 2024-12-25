@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { signup } from "../services/api";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import signupImage from "../assets/images/signuppageimage.jpg"; // Import the image
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -33,7 +33,7 @@ const SignUp = () => {
 
     try {
       const formData = { username: name, password, email };
-      const response = await signup(formData);
+      const response = await signup(formData, { withCredentials: true });
 
       setMessage(response.data.message || "Sign-up successful!");
       navigate("/user-input");
@@ -57,7 +57,8 @@ const SignUp = () => {
 
         {/* Right side with form */}
         <Col
-          md={7} lg={7}  // Adjust to give more width on larger screens
+          md={7}
+          lg={7} // Adjust to give more width on larger screens
           className="d-flex align-items-center justify-content-center px-5"
         >
           <div className="signup-form-container" style={{ width: "60%" }}>
@@ -104,8 +105,12 @@ const SignUp = () => {
                 />
               </Form.Group>
 
-              <Button className="custom-button" type="submit" disabled={!validateForm()}>
-                Sign Up  <FontAwesomeIcon icon={faArrowRight} />
+              <Button
+                className="custom-button"
+                type="submit"
+                disabled={!validateForm()}
+              >
+                Sign Up <FontAwesomeIcon icon={faArrowRight} />
               </Button>
             </Form>
           </div>
