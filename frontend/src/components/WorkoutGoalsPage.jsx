@@ -68,7 +68,7 @@ const WorkoutGoalsPage = () => {
               fontSize: "2.5rem",
             }}
           >
-            Let's get to know your workout goals.
+            Let's get to know your workout goals
           </div>
         </div>
 
