@@ -5,6 +5,9 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import signupImage from "../assets/images/signuppageimage.jpg"; // Import the image
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import signupImage from "../assets/images/signuppageimage.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -46,22 +49,36 @@ const SignUp = () => {
     <Container fluid className="vh-100">
       <Row className="h-100 g-0">
         {/* Left side with image */}
-        <Col md={5} className="d-none d-md-block p-0">
+        <Col md={6} className="position-relative p-0">
           <img
             src={signupImage}
             alt="Sign Up"
             className="img-fluid h-100"
             style={{ objectFit: "cover", width: "100%" }}
           />
+          {/* Text overlay */}
+          <div
+            className="text-overlay"
+            style={{
+              position: "absolute",
+              top: "45%",
+              left: "5%",
+              color: "rgba(255, 255, 255, 0.9)",
+              fontSize: "2.5rem", // Larger text size
+            }}
+          >
+            Explore your personalized fitness plan
+          </div>
         </Col>
 
         {/* Right side with form */}
         <Col
           md={7}
           lg={7} // Adjust to give more width on larger screens
+          md={6}
           className="d-flex align-items-center justify-content-center px-5"
         >
-          <div className="signup-form-container" style={{ width: "60%" }}>
+          <div className="signup-form-container" style={{ width: "70%" }}>
             <h2 className="text-center mb-4">Sign Up</h2>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="name" className="mb-3">
@@ -71,7 +88,6 @@ const SignUp = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  style={{ width: "100%" }}
                 />
               </Form.Group>
 
@@ -110,6 +126,8 @@ const SignUp = () => {
                 type="submit"
                 disabled={!validateForm()}
               >
+                Sign Up <FontAwesomeIcon icon={faArrowRight} />
+              <Button className="custom-button" type="submit" disabled={!validateForm()}>
                 Sign Up <FontAwesomeIcon icon={faArrowRight} />
               </Button>
             </Form>
