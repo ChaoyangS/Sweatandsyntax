@@ -5,9 +5,6 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import signupImage from "../assets/images/signuppageimage.jpg"; // Import the image
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import signupImage from "../assets/images/signuppageimage.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -73,9 +70,8 @@ const SignUp = () => {
 
         {/* Right side with form */}
         <Col
-          md={7}
-          lg={7} // Adjust to give more width on larger screens
           md={6}
+          lg={6} // Adjust the column size for consistency
           className="d-flex align-items-center justify-content-center px-5"
         >
           <div className="signup-form-container" style={{ width: "70%" }}>
@@ -121,13 +117,19 @@ const SignUp = () => {
                 />
               </Form.Group>
 
+              {/* Display success/error message */}
+              {message && (
+                <div className="alert alert-info text-center mb-3">
+                  {message}
+                </div>
+              )}
+
               <Button
                 className="custom-button"
                 type="submit"
                 disabled={!validateForm()}
+                style={{ width: "100%" }}
               >
-                Sign Up <FontAwesomeIcon icon={faArrowRight} />
-              <Button className="custom-button" type="submit" disabled={!validateForm()}>
                 Sign Up <FontAwesomeIcon icon={faArrowRight} />
               </Button>
             </Form>

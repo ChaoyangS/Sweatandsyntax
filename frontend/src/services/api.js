@@ -8,7 +8,7 @@ export const signup = (formData) => {
 };
 
 export const addUserDetails = (userDetails) => {
-  return axios.post(`${API_BASE_URL}/auth/add-user-details`, userDetails);
+  return axios.post(`${API_BASE_URL}/auth/user-details`, userDetails);
 };
 
 // Login API
