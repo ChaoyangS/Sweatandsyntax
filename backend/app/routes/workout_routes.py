@@ -4,6 +4,10 @@ from flask import session
 
 workout_bp = Blueprint("workout", __name__) # Create a blueprint for workout routes
 
+@workout_bp.route('/debug_session', methods=['GET'])
+def debug_session():
+    return jsonify(dict(session))
+
 @workout_bp.route("/create_plan", methods=["POST"])
 def create_user_workout_plan():
     """
