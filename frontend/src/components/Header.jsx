@@ -16,13 +16,13 @@ export default function Header() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#personalized">Personalized Plans</Nav.Link>
-              <Nav.Link href="#aiplan">AI generated Plans</Nav.Link>
+              {/* <Nav.Link href="#aiplan">AI generated Plans</Nav.Link> */}
               <NavDropdown title="More" id="collapsible-nav-dropdown">
                 <NavDropdown.Item href="#aboutus">About Us</NavDropdown.Item>
                 <NavDropdown.Item href="#contactus">
                   Contact Us
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#xxx">xxx</NavDropdown.Item>
+
                 <NavDropdown.Divider />
               </NavDropdown>
             </Nav>

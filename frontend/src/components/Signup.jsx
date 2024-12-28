@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../services/api";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import signupImage from "../assets/images/signuppageimage.jpg"; // Import the image
+// import signupImage from "../assets/images/signuppageimage.jpg"; // Import the image
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import signupImage from "../assets/images/signuppageimage.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -90,7 +88,6 @@ const SignUp = () => {
                   required
                 />
               </Form.Group>
-
               <Form.Group controlId="email" className="mb-3">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -100,7 +97,6 @@ const SignUp = () => {
                   required
                 />
               </Form.Group>
-
               <Form.Group controlId="password" className="mb-3">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
@@ -110,7 +106,6 @@ const SignUp = () => {
                   required
                 />
               </Form.Group>
-
               <Form.Group controlId="confirmPassword" className="mb-4">
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
@@ -120,14 +115,17 @@ const SignUp = () => {
                   required
                 />
               </Form.Group>
-
+              <Button
+                className="custom-button"
+                type="submit"
+                disabled={!validateForm()}
+              />
+              Sign Up <FontAwesomeIcon icon={faArrowRight} />
               <Button
                 className="custom-button"
                 type="submit"
                 disabled={!validateForm()}
               >
-                Sign Up <FontAwesomeIcon icon={faArrowRight} />
-              <Button className="custom-button" type="submit" disabled={!validateForm()}>
                 Sign Up <FontAwesomeIcon icon={faArrowRight} />
               </Button>
             </Form>
