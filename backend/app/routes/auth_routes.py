@@ -1,8 +1,16 @@
 from flask import Blueprint, request, jsonify
 from ..services.auth_service import AuthService
 from flask import session
+from app.models import user 
 
 auth_bp = Blueprint("auth", __name__) # Create a blueprint for auth routes
+
+@auth_bp.route('/')
+def home():
+    # Debugging session
+    if 'username' in session:
+        return "Welcome {session['username']}!"
+    return "Welcome to SweatandSyntax!"
 
 @auth_bp.route("/signup", methods=["POST"])
 def signup():
@@ -52,18 +60,31 @@ def add_user_details():
     return jsonify(response), status_code
 
 
-@auth_bp.route("/login", methods=["POST"])
+@auth_bp.route('/login', methods=['POST'])
 def login():
+    # Get input data
     data = request.json
-    if not data.get("username") or not data.get("password"):
+    username = data.get('username')
+    password = data.get('password')
+
+    # Validate input
+    if not username or not password:
         return jsonify({"error": "Username and password are required"}), 400
 
-    username = data["username"]
-    password = data["password"]
+    # Query the database for the user
+    user = User.query.filter_by(username=username).first()
+    if not user:
+        return jsonify({"error": "Invalid username or password"}), 401
 
-    # Call AuthService to log in the user
-    response, status_code = AuthService.login_user(username, password)
-    return jsonify(response), status_code
+    # Compare plain text password
+    if user.password != password:  # No hashing, plain text check
+        return jsonify({"error": "Invalid username or password"}), 401
+
+    # Save session
+    session['username'] = user.username
+    session['email'] = user.email
+    return jsonify({"message": "Login successful!", "user": user.username})
+
 
 @auth_bp.route("/logout", methods=["POST"])
 def logout():

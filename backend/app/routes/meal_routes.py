@@ -1,8 +1,16 @@
 from flask import Blueprint, request, jsonify  # Import Flask modules for routing and JSON handling
 from ..services.meal_service import MealService  # Import MealService for handling logic
+from flask import session
 
 # Create a Blueprint for meal-related routes
 meal_bp = Blueprint("meal", __name__)
+
+@meal_bp.route('/meals', methods=['GET'])
+def get_meals():
+    if 'username' not in session:
+        return jsonify({"error": "Unauthorized access"}), 401
+    # Process meal data
+    return jsonify({"meals": []})
 
 # -------------------------------
 # Route 1: Create Meal Plan
