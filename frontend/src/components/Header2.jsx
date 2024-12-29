@@ -18,11 +18,6 @@ export default function Header() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/personal">
-              {" "}
-              {/* Updated to use Link */}
-              Personalized Plans
-            </Nav.Link>
             {/* Uncomment if needed */}
             {/* <Nav.Link as={Link} to="/aiplan">AI generated Plans</Nav.Link> */}
             <NavDropdown title="More" id="collapsible-nav-dropdown">
@@ -40,6 +35,11 @@ export default function Header() {
             </NavDropdown>
           </Nav>
           <Nav>
+            <Nav.Link as={Link} to="/login">
+              {" "}
+              {/* Updated */}
+              Log In
+            </Nav.Link>
             <Nav.Link as={Link} to="/signup" eventKey={2}>
               {" "}
               {/* Updated */}

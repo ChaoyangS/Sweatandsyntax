@@ -9,7 +9,7 @@ import SummaryPage from "./components/SummaryPage"; // Import SummaryPage compon
 import WorkoutGoalsPage from "./components/WorkoutGoalsPage"; // Import WorkoutGoalsPage
 import PersonalPage from "./pages/PersonalPage/PersonalPage"; // Import PersonalPage
 
-import Header from "./components/Header";
+import Header2 from "./components/Header2";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap's CSS globally
 
@@ -17,7 +17,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header /> {/* Include Header in the App component */}
+        {/* <Header2 /> Include Header in the App component */}
         {/* Define Routes */}
         <Routes>
           <Route path="/SignUp" element={<SignUp />} />

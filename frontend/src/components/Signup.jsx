@@ -5,6 +5,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import signupImage from "../assets/images/signuppageimage.jpg"; // Import the image
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import Header2 from "./Header2";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -44,6 +45,7 @@ const SignUp = () => {
 
   return (
     <Container fluid className="vh-100">
+      <Header2 />
       <Row className="h-100 g-0">
         {/* Left side with image */}
         <Col md={6} className="position-relative p-0">
