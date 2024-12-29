@@ -104,3 +104,9 @@ def get_current_user():
         return jsonify({"error": "Not logged in"}), 401
 
     return jsonify(user), 200
+
+# Debug session route
+@auth_bp.route('/debug_session', methods=['GET'])
+def debug_session():
+    return jsonify(dict(session)), 200
+
