@@ -72,7 +72,7 @@ def login():
         return jsonify({"error": "Username and password are required"}), 400
 
     # Query the database for the user
-    user = User.query.filter_by(username=username).first()
+    user = user.query.filter_by(username=username).first()
     if not user:
         return jsonify({"error": "Invalid username or password"}), 401
 

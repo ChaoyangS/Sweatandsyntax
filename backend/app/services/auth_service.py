@@ -52,38 +52,19 @@ class AuthService:
         :param password: Plain text password for verification.
         :return: Success or error message as a dictionary.
         """
-        db = get_db()
-        cursor = db.cursor()
+        user_row = UserDAO().get_user_by_username(username)
 
-        try:
-            # Retrieve the user
-            cursor.execute(
-                "SELECT * FROM user WHERE username = ?", (username,)
-            )
-            user_row = cursor.fetchone()
+        if not user_row:
+            return {"error": "User not found"}, 404
 
-            if not user_row:
-                return {"error": "User not found"}, 404
+        # Verify the password
+        if not check_password_hash(user_row['password'], password):
+            return {"error": "Invalid password"}, 401
 
-            # Create a User instance
-            user = User(
-                user_id=user_row["user_id"],
-                username=user_row["username"],
-                password=user_row["password"],
-                email=user_row["email"]
-            )
-
-            # Verify the password
-            if not check_password_hash(user.password, password):
-                return {"error": "Invalid password"}, 401
-
-            # Start user session
-            session['user_id'] = user.user_id
-            session['username'] = user.username
-            return {"message": "Login successful"}, 200
-
-        finally:
-            cursor.close()
+        # Start user session
+        session['user_id'] = user_row['user_id']
+        session['username'] = user_row['username']
+        return {"message": "Login successful"}, 200
 
     @staticmethod
     def logout_user():
@@ -111,52 +92,15 @@ class AuthService:
         if 'user_id' not in session:
             return None
 
-        db = get_db()
-        cursor = db.cursor()
+        user_row = UserDAO().get_user_by_id(session['user_id'])
+        if not user_row:
+            return None
 
-        try:
-            # Fetch user data
-            cursor.execute(
-                "SELECT * FROM user WHERE user_id = ?", (session['user_id'],)
-            )
-            user_row = cursor.fetchone()
+        user_details_row = UserDAO().get_user_by_id(session['user_id'])
 
-            if not user_row:
-                return None
+        if not user_details_row:
+            return user_row
 
-            # Create a User instance
-            user = User(
-                user_id=user_row["user_id"],
-                username=user_row["username"],
-                password=user_row["password"],
-                email=user_row["email"]
-            )
-
-            # Fetch user details
-            cursor.execute(
-                "SELECT * FROM user_details WHERE user_id = ?", (user.user_id,)
-            )
-            user_details_row = cursor.fetchone()
-
-            if not user_details_row:
-                return user.user_dict()
-
-            # Create a UserDetails instance
-            user_details = UserDetails(
-                user_details_id=user_details_row["id"],
-                user_id=user_details_row["user_id"],
-                weight=user_details_row["weight"],
-                height=user_details_row["height"],
-                age=user_details_row["age"],
-                gender=user_details_row["gender"],
-                muscle=user_details_row["muscle"],
-                activity_level=user_details_row["activity_level"]
-            )
-
-            # Combine user and user_details data
-            user_dict = user.user_dict()
-            user_dict.update(user_details.user_dict())
-            return user_dict
-
-        finally:
-            cursor.close()
+        # Combine user and user_details data
+        user_row.update(user_details_row)
+        return user_row
