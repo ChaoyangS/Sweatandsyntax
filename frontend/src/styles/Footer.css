@@ -1,0 +1,10 @@
+.footer {
+  background-color: black;
+  display: flex;
+  font-size: small;
+  color: aliceblue;
+}
+.copyright {
+  padding-left: 8rem;
+  padding-top: 1rem;
+}

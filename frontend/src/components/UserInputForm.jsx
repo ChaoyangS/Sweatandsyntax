@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { addUserDetails } from "../services/api";
 import userinputimage from "../assets/images/userinputimage.jpg";
 import { Col } from "react-bootstrap";
+import Header2 from "./Header2";
 
 const UserInputForm = () => {
   const location = useLocation();
@@ -17,7 +18,8 @@ const UserInputForm = () => {
 
   const { name = "User", email = "" } = location.state || {};
 
-  const capitalize = (str) => str && str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  const capitalize = (str) =>
+    str && str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -50,6 +52,7 @@ const UserInputForm = () => {
 
   return (
     <div className="UserInputForm container-fluid vh-100">
+      <Header2 />
       <div className="row h-100 g-0">
         {/* Left side with image and overlay */}
         <div className="col-md-6 position-relative p-0">

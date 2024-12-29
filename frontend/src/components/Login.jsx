@@ -4,6 +4,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "../styles/LoginPage.css";
 import loginImage from "../assets/images/loginpageimage.jpg"; // Import the login image
 import { login } from "../services/api";
+import Header2 from "./Header2";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -27,12 +28,15 @@ export default function Login() {
         setError(response.data.message || "Invalid login credentials");
       }
     } catch (err) {
-      setError(err.response?.data?.error || "An error occurred. Please try again.");
+      setError(
+        err.response?.data?.error || "An error occurred. Please try again."
+      );
     }
   }
 
   return (
     <Container fluid className="vh-100">
+      <Header2 />
       <Row className="h-100 g-0">
         {/* Left side with image */}
         <Col md={6} className="position-relative p-0">
@@ -65,7 +69,9 @@ export default function Login() {
           <div className="login-form-container" style={{ width: "70%" }}>
             <h2 className="text-center mb-4">Login</h2>
             <Form onSubmit={handleSubmit}>
-              {error && <div className="error-message text-danger mb-3">{error}</div>}
+              {error && (
+                <div className="error-message text-danger mb-3">{error}</div>
+              )}
 
               <Form.Group controlId="email" className="mb-3">
                 <Form.Label>Email</Form.Label>
@@ -88,7 +94,11 @@ export default function Login() {
                 />
               </Form.Group>
 
-              <Button className="custom-button" type="submit" disabled={!validateForm()}>
+              <Button
+                className="custom-button"
+                type="submit"
+                disabled={!validateForm()}
+              >
                 Login
               </Button>
             </Form>
