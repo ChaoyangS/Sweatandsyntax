@@ -1,27 +1,13 @@
 import React, { useState } from "react";
+import "../styles/Footer.css";
 
-export default function Login() {
+export default function Footer() {
   return (
-    <>
-      <footer class="footer">
-        <div>
-          <div class="footer__title">
+    <footer class="footer">
+      <div>
+        {/* <div class="footer__title">
             <h1>Get in Touch</h1>
-            <img
-              class="footer__icon"
-              src=".././assets/Icon-instagram.svg"
-              alt="instagram"
-            />
-            <img
-              class="footer__icon"
-              src=".././assets/icons/Icon-facebook.svg"
-              alt="fb"
-            />
-            <img
-              class="footer__icon"
-              src=".././assets/icons/Icon-twitter.svg"
-              alt="twitter"
-            />
+
             <h1 class="footer__logo1">Sweat and Syntax</h1>
           </div>
 
@@ -36,14 +22,12 @@ export default function Login() {
                 shec@seas.upenn.edu
               </a>
             </span>
-          </div>
+          </div> */}
 
-          <h1 class="footer__logo2">Sweat and Syntax</h1>
-          <p class="copyright">
-            Copyright Sweat and Syntax © 2024 All Rights Reserved
-          </p>
-        </div>
-      </footer>
-    </>
+        <p class="copyright">
+          Copyright Sweat and Syntax © 2024 All Rights Reserved
+        </p>
+      </div>
+    </footer>
   );
 }

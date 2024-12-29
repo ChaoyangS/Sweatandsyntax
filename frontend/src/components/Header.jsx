@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -8,33 +8,51 @@ import "bootstrap/dist/css/bootstrap.css";
 
 export default function Header() {
   return (
-    <>
-      <Navbar bg="dark" data-bs-theme="dark" collapseOnSelect>
-        <Container>
-          <Navbar.Brand href="#home">Sweat and Syntax</Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#personalized">Personalized Plans</Nav.Link>
-              {/* <Nav.Link href="#aiplan">AI generated Plans</Nav.Link> */}
-              <NavDropdown title="More" id="collapsible-nav-dropdown">
-                <NavDropdown.Item href="#aboutus">About Us</NavDropdown.Item>
-                <NavDropdown.Item href="#contactus">
-                  Contact Us
-                </NavDropdown.Item>
-
-                <NavDropdown.Divider />
-              </NavDropdown>
-            </Nav>
-            <Nav>
-              <Nav.Link href="#signin">Sign In</Nav.Link>
-              <Nav.Link eventKey={2} href="#signup">
-                Sign Up
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </>
+    <Navbar bg="dark" data-bs-theme="dark" collapseOnSelect>
+      <Container>
+        <Navbar.Brand as={Link} to="/login">
+          {" "}
+          {/* Updated to use Link */}
+          Sweat and Syntax
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/personal">
+              {" "}
+              {/* Updated to use Link */}
+              Personalized Plans
+            </Nav.Link>
+            {/* Uncomment if needed */}
+            {/* <Nav.Link as={Link} to="/aiplan">AI generated Plans</Nav.Link> */}
+            <NavDropdown title="More" id="collapsible-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/aboutus">
+                {" "}
+                {/* Updated */}
+                About Us
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/contactus">
+                {" "}
+                {/* Updated */}
+                Contact Us
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+            </NavDropdown>
+          </Nav>
+          <Nav>
+            <Nav.Link as={Link} to="/login">
+              {" "}
+              {/* Updated */}
+              Log In
+            </Nav.Link>
+            <Nav.Link as={Link} to="/signup" eventKey={2}>
+              {" "}
+              {/* Updated */}
+              Sign Up
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }

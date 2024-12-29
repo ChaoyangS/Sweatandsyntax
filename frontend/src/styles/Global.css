@@ -1,42 +1,44 @@
 /* Global.css */
+* {
+  font-family: "Avenir";
+}
 .custom-button {
-    background-color: #323636 !important; /* Green background */
-    border-color: #323636 !important;     /* Green border */
-    color: white !important;              /* White text */
-    padding: 10px 20px !important;        /* Add padding */
-    border-radius: 5px !important;        /* Rounded corners */
-    font-size: 16px !important;           /* Font size */
-    transition: background-color 0.3s, border-color 0.3s !important; /* Smooth transition */
-  }
-  
-  .custom-button:hover {
-    background-color: #687070 !important; /* Darker green on hover */
-    border-color: #687070(140, 168, 168) !important;
-    box-shadow: none !important;
-    border-color: #687070 !important;     /* Green border */
-  }
-  
-  .custom-button:disabled {
-    background-color: #bfc9c9 !important; /* Grey color for disabled state */
-    border-color: #bfc9c9 !important;
-  }
-  
-  .custom-button:active {
-    background-color: #323636 !important; /* Darker color when clicked */
-    border-color: #323636 !important;
-  }
-  
-  .form-container {
-    max-width: 100%;  /* Makes the container take up the full width of its parent */
-    width: 80%;       /* Or set it to 80% of its parent width */
-    margin: 0 auto;   /* Centers the container */
-  }
+  background-color: #323636 !important; /* Green background */
+  border-color: #323636 !important; /* Green border */
+  color: white !important; /* White text */
+  padding: 10px 20px !important; /* Add padding */
+  border-radius: 5px !important; /* Rounded corners */
+  font-size: 16px !important; /* Font size */
+  transition: background-color 0.3s, border-color 0.3s !important; /* Smooth transition */
+}
 
+.custom-button:hover {
+  background-color: #687070 !important; /* Darker green on hover */
+  border-color: #687070(140, 168, 168) !important;
+  box-shadow: none !important;
+  border-color: #687070 !important; /* Green border */
+}
 
-  /* Override the default outline button style */
+.custom-button:disabled {
+  background-color: #bfc9c9 !important; /* Grey color for disabled state */
+  border-color: #bfc9c9 !important;
+}
+
+.custom-button:active {
+  background-color: #323636 !important; /* Darker color when clicked */
+  border-color: #323636 !important;
+}
+
+.form-container {
+  max-width: 100%; /* Makes the container take up the full width of its parent */
+  width: 80%; /* Or set it to 80% of its parent width */
+  margin: 0 auto; /* Centers the container */
+}
+
+/* Override the default outline button style */
 .btn-outline-primary {
-  border-color: #bfc9c9 !important;  /* Default blue border */
-  color: #424747 !important;  /* Default blue text */
+  border-color: #bfc9c9 !important; /* Default blue border */
+  color: #424747 !important; /* Default blue text */
   border-color: #323636 !important;
 }
 
@@ -54,7 +56,6 @@
   border-color: #dcdddd !important;
   color: white !important;
 }
-
 
 .checkmark-button {
   position: relative !important;
