@@ -5,7 +5,7 @@ class Config:
     Configuration class.
     """
     # Flask secret key for session management
-    SECRET_KEY = os.getenv('SECRET_KEY', 'secret_key')
+    SECRET_KEY = os.getenv('SECRET_KEY', 'supersecretkey')
 
     # Debug mode - Set to False in production
     DEBUG = os.getenv('DEBUG', True)
