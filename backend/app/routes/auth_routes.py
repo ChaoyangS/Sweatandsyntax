@@ -105,8 +105,11 @@ def get_current_user():
 
     return jsonify(user), 200
 
-# Debug session route
 @auth_bp.route('/debug_session', methods=['GET'])
 def debug_session():
+    import os
+    print("Session Data:", session)
+    print("Headers:", request.headers)
+    print("Session Files:", os.listdir('flask_session/'))  # Logs all session files
+    print("Current Session Key:", session.sid if hasattr(session, 'sid') else 'No SID')
     return jsonify(dict(session)), 200
-
