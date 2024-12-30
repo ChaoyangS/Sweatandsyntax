@@ -10,6 +10,7 @@ import WorkoutGoalsPage from "./components/WorkoutGoalsPage"; // Import WorkoutG
 import PersonalPage from "./pages/PersonalPage/PersonalPage"; // Import PersonalPage
 
 import Header2 from "./components/Header2";
+import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap's CSS globally
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/summary" element={<SummaryPage />} />
           <Route path="/workout-goals" element={<WorkoutGoalsPage />} />
           <Route path="/personal" element={<PersonalPage />} />
+          <Route path="/aboutus" element={<AboutUsPage />} />
         </Routes>
         <Footer />
       </div>

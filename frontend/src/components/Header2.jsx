@@ -26,12 +26,8 @@ export default function Header() {
                 {/* Updated */}
                 About Us
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/contactus">
-                {" "}
-                {/* Updated */}
-                Contact Us
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
+              {/* 
+              <NavDropdown.Divider /> */}
             </NavDropdown>
           </Nav>
           <Nav>

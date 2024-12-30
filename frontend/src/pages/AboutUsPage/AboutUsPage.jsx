@@ -1,18 +1,16 @@
 import React from "react";
-import Login from "../../components/Login";
+import AboutUs from "../../components/AboutUs";
 import Header2 from "../../components/Header2";
 import Footer from "../../components/Footer";
 
-function AuthenticationPage() {
+function AboutUsPage() {
   return (
     <>
       <Header2 />
 
-      <Login />
-
-      <Footer />
+      <AboutUs />
     </>
   );
 }
 
-export default AuthenticationPage;
+export default AboutUsPage;

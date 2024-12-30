@@ -28,15 +28,10 @@ export default function Header() {
             <NavDropdown title="More" id="collapsible-nav-dropdown">
               <NavDropdown.Item as={Link} to="/aboutus">
                 {" "}
-                {/* Updated */}
                 About Us
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/contactus">
-                {" "}
-                {/* Updated */}
-                Contact Us
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
+
+              {/* <NavDropdown.Divider /> */}
             </NavDropdown>
           </Nav>
           <Nav>
