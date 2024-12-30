@@ -39,3 +39,5 @@ class UserDetails:
             'gender': self.gender,
             'activity_level' : self.activity_level
         }
+    
+    

@@ -2,6 +2,8 @@ import axios from "axios";
 
 const API_BASE_URL = "http://127.0.0.1:5000/api";
 
+axios.defaults.withCredentials = true; // Global setting for credentials
+
 // Signup API
 export const signup = (formData) => {
   return axios.post(`${API_BASE_URL}/auth/signup`, formData, {

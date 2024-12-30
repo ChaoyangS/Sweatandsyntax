@@ -4,11 +4,13 @@ print(sys.path)
 
 import os
 from app.db import init_app as db_init_app
-from flask import Flask
+from flask import Flask, session
+from flask_session import Session  # Add this import
 from .routes.auth_routes import auth_bp
 from .routes.workout_routes import workout_bp
 from config import Config
 from flask_cors import CORS
+
 
 """
 The __init__.py serves double duty:
@@ -18,27 +20,30 @@ and it tells Python that the directory should be treated as a package.
 
 def create_app(test_config=None):
 
-    #Create and configure the app
-    #instance_relative_config is used to specify whether the flask app
-    #should use configuration files
+    # Create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     
     # Enable CORS for all routes, supporting credentials
     CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5173"], allow_headers=["Content-Type"])
 
-    #load configuration from Config class
+    # Load configuration from Config class
     app.config.from_object(Config)
 
     # Ensure the instance folder exists
     os.makedirs(app.instance_path, exist_ok=True)
 
-    #Register blueprint
+    # Initialize Flask-Session
+    Session(app)  # <-- This initializes the session!
+
+    # Register blueprints
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(workout_bp, url_prefix="/api/workout")
 
+    # Initialize database
     db_init_app(app)
 
     return app
+
 
 
 # from flask import Flask
