@@ -21,16 +21,17 @@ export default function Login() {
 
     try {
       const response = await login({ email, password });
+      console.log("Login Response:", response); // Debug response
 
-      if (response.data.success) {
-        navigate("/user-input");
+      if (response.success || response.message === "Login successful!") {
+        // Check for success or message
+        alert("Login successful!");
+        navigate("/user-input"); // Redirect to user-input page
       } else {
-        setError(response.data.message || "Invalid login credentials");
+        setError(response.message || "Invalid login credentials");
       }
     } catch (err) {
-      setError(
-        err.response?.data?.error || "An error occurred. Please try again."
-      );
+      setError(err.error || "An error occurred. Please try again.");
     }
   }
 
