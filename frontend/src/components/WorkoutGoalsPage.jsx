@@ -48,8 +48,8 @@ const WorkoutGoalsPage = () => {
   };
 
   return (
-    <div className="WorkoutGoalsPage container-fluid vh-100">
-      <div className="row h-100 g-0">
+    <div className="WorkoutGoalsPage container-fluid d-flex flex-column" style={{ minHeight: "100vh" }}>
+      <div className="row flex-grow-1 g-0">
         {/* Left side with image and overlay */}
         <div className="col-md-6 position-relative p-0">
           <img

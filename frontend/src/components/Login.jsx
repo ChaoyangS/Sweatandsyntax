@@ -4,7 +4,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "../styles/LoginPage.css";
 import loginImage from "../assets/images/loginpageimage.jpg"; // Import the login image
 import { login } from "../services/api";
-import Header2 from "./Header2";
+import Header2 from "./Header2"; // Assuming this is the header component
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -35,16 +35,26 @@ export default function Login() {
   }
 
   return (
-    <Container fluid className="vh-100">
+    <Container fluid className="d-flex flex-column min-vh-100">
       <Header2 />
-      <Row className="h-100 g-0">
+      <Row className="flex-grow-1 g-0">
         {/* Left side with image */}
-        <Col md={6} className="position-relative p-0">
+        <Col
+          md={6}
+          className="position-relative p-0"
+          style={{
+            height: "100vh", // Ensure the image column stretches full height
+          }}
+        >
           <img
             src={loginImage}
             alt="Login"
-            className="img-fluid h-100"
-            style={{ objectFit: "cover", width: "100%" }}
+            className="img-fluid"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "100%", // Ensure the image fills the column height
+            }}
           />
           {/* Text overlay */}
           <div
@@ -65,6 +75,12 @@ export default function Login() {
         <Col
           md={6}
           className="d-flex align-items-center justify-content-center px-5"
+          style={{
+            minHeight: "100vh", // Ensure the form section stretches to full height
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
         >
           <div className="login-form-container" style={{ width: "70%" }}>
             <h2 className="text-center mb-4">Login</h2>
@@ -95,7 +111,7 @@ export default function Login() {
               </Form.Group>
 
               <Button
-                className="custom-button"
+                className="custom-button w-100"
                 type="submit"
                 disabled={!validateForm()}
               >
@@ -105,6 +121,8 @@ export default function Login() {
           </div>
         </Col>
       </Row>
+
+      {/* Footer is already included in App.js, so no need to add here */}
     </Container>
   );
 }

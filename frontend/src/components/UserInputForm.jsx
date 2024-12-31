@@ -13,18 +13,17 @@ const UserInputForm = () => {
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [gender, setGender] = useState("");
-  const [activity_level, setActivityLevel] = useState("");
+  const [activityLevel, setActivityLevel] = useState("");
   const [message, setMessage] = useState("");
 
   const { name = "User", email = "" } = location.state || {};
 
-  const capitalize = (str) =>
-    str && str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  const capitalize = (str) => str && str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!age || !weight || !height || !gender || !activity_level) {
+    if (!age || !weight || !height || !gender || !activityLevel) {
       alert("Please fill out all fields!");
       return;
     }
@@ -36,7 +35,7 @@ const UserInputForm = () => {
       weight,
       height,
       gender,
-      activity_level,
+      activityLevel,
     };
 
     try {
@@ -51,16 +50,20 @@ const UserInputForm = () => {
   };
 
   return (
-    <div className="UserInputForm container-fluid vh-100">
+    <div className="UserInputForm container-fluid d-flex flex-column" style={{ minHeight: "100vh" }}>
       <Header2 />
-      <div className="row h-100 g-0">
+      <div className="row flex-grow-1 g-0">
         {/* Left side with image and overlay */}
         <div className="col-md-6 position-relative p-0">
           <img
             src={userinputimage}
-            alt="Workout Goal"
-            className="img-fluid h-100"
-            style={{ objectFit: "cover", width: "100%" }}
+            alt="User Input"
+            className="img-fluid"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "100%",
+            }}
           />
           <div
             className="text-overlay"
@@ -88,14 +91,14 @@ const UserInputForm = () => {
                 <strong>Age:</strong>
               </legend>
               <input
-                type="text"
+                type="number"
                 id="age"
                 className="form-control"
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
                 required
                 placeholder="Enter your age"
-                style={{ appearance: "none" }}
+                min="1"
               />
             </fieldset>
 
@@ -104,14 +107,14 @@ const UserInputForm = () => {
                 <strong>Weight (kg):</strong>
               </legend>
               <input
-                type="text"
+                type="number"
                 id="weight"
                 className="form-control"
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
                 required
                 placeholder="Enter your weight"
-                style={{ appearance: "none" }}
+                min="1"
               />
             </fieldset>
 
@@ -120,14 +123,14 @@ const UserInputForm = () => {
                 <strong>Height (cm):</strong>
               </legend>
               <input
-                type="text"
+                type="number"
                 id="height"
                 className="form-control"
                 value={height}
                 onChange={(e) => setHeight(e.target.value)}
                 required
                 placeholder="Enter your height in cm"
-                style={{ appearance: "none" }}
+                min="1"
               />
             </fieldset>
 

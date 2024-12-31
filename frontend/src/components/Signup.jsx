@@ -5,7 +5,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import signupImage from "../assets/images/signuppageimage.jpg"; // Import the image
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import Header2 from "./Header2";
+import Header2 from "./Header2"; // Assuming this is the header component
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -44,16 +44,26 @@ const SignUp = () => {
   };
 
   return (
-    <Container fluid className="vh-100">
+    <Container fluid className="d-flex flex-column min-vh-100">
       <Header2 />
-      <Row className="h-100 g-0">
+      <Row className="flex-grow-1 g-0">
         {/* Left side with image */}
-        <Col md={6} className="position-relative p-0">
+        <Col
+          md={6}
+          className="position-relative p-0"
+          style={{
+            height: "100vh", // Ensure it stretches the full height
+          }}
+        >
           <img
             src={signupImage}
             alt="Sign Up"
-            className="img-fluid h-100"
-            style={{ objectFit: "cover", width: "100%" }}
+            className="img-fluid"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "100%", // Ensure the image fills the column height
+            }}
           />
           {/* Text overlay */}
           <div
@@ -75,6 +85,12 @@ const SignUp = () => {
           md={6}
           lg={6} // Adjust the column size for consistency
           className="d-flex align-items-center justify-content-center px-5"
+          style={{
+            minHeight: "100vh", // Ensure the form section also stretches to full height
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
         >
           <div className="signup-form-container" style={{ width: "70%" }}>
             <h2 className="text-center mb-4">Sign Up</h2>
@@ -124,10 +140,9 @@ const SignUp = () => {
               )}
 
               <Button
-                className="custom-button"
+                className="custom-button w-100"
                 type="submit"
                 disabled={!validateForm()}
-                style={{ width: "100%" }}
               >
                 Sign Up <FontAwesomeIcon icon={faArrowRight} />
               </Button>
