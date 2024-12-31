@@ -13,7 +13,7 @@ const UserInputForm = () => {
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [gender, setGender] = useState("");
-  const [activityLevel, setActivityLevel] = useState("");
+  const [activity_level, setActivityLevel] = useState("");
   const [message, setMessage] = useState("");
 
   const { name = "User", email = "" } = location.state || {};
@@ -24,7 +24,7 @@ const UserInputForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!age || !weight || !height || !gender || !activityLevel) {
+    if (!age || !weight || !height || !gender || !activity_level) {
       alert("Please fill out all fields!");
       return;
     }
@@ -36,7 +36,7 @@ const UserInputForm = () => {
       weight,
       height,
       gender,
-      activityLevel,
+      activity_level,
     };
 
     try {

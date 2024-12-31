@@ -55,7 +55,7 @@ def add_user_details():
     activity_level = data["activity_level"]
 
     # Call AuthService to add user details
-    response, status_code = AuthService.create_user_details(user_id, weight, height, age, gender, muscle, activity_level)
+    response, status_code = AuthService.create_user_details(user_id, weight, height, age, gender, activity_level)
 
     print("Session Data:", dict(session))
     print("Headers:", request.headers)

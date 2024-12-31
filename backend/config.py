@@ -14,6 +14,9 @@ class Config:
     DATABASE_URI = os.getenv('DATABASE_URI', os.path.join("instance", "db.sqlite"))
 
     # Session configuration
+    SESSION_FILE_DIR = os.path.join(os.getcwd(), 'flask_session')  # Explicit path
+    SESSION_FILE_THRESHOLD = 500  # Max files before cleaning
+    SESSION_FILE_MODE = 0o600  # File permissions
     SESSION_TYPE = 'filesystem'
     SESSION_PERMANENT = False
     SESSION_USE_SIGNER = True
