@@ -13,29 +13,29 @@ const UserInputForm = () => {
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [gender, setGender] = useState("");
-  const [activityLevel, setActivityLevel] = useState("");
+  const [activity_level, setactivity_level] = useState("");
   const [message, setMessage] = useState("");
 
   const { name = "User", email = "" } = location.state || {};
 
-  const capitalize = (str) => str && str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  const capitalize = (str) =>
+    str && str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!age || !weight || !height || !gender || !activityLevel) {
+    if (!age || !weight || !height || !gender || !activity_level) {
       alert("Please fill out all fields!");
       return;
     }
 
     const formData = {
       name,
-      email,
       age,
       weight,
       height,
       gender,
-      activityLevel,
+      activity_level,
     };
 
     try {
@@ -50,7 +50,10 @@ const UserInputForm = () => {
   };
 
   return (
-    <div className="UserInputForm container-fluid d-flex flex-column" style={{ minHeight: "100vh" }}>
+    <div
+      className="UserInputForm container-fluid d-flex flex-column"
+      style={{ minHeight: "100vh" }}
+    >
       <Header2 />
       <div className="row flex-grow-1 g-0">
         {/* Left side with image and overlay */}
@@ -188,10 +191,10 @@ const UserInputForm = () => {
                 <input
                   type="radio"
                   id="beginner"
-                  name="activityLevel"
+                  name="activity_level"
                   className="form-check-input"
                   value="Beginner"
-                  onChange={(e) => setActivityLevel(e.target.value)}
+                  onChange={(e) => setactivity_level(e.target.value)}
                   required
                 />
                 <label htmlFor="beginner" className="form-check-label">
@@ -202,10 +205,10 @@ const UserInputForm = () => {
                 <input
                   type="radio"
                   id="intermediate"
-                  name="activityLevel"
+                  name="activity_level"
                   className="form-check-input"
                   value="Intermediate"
-                  onChange={(e) => setActivityLevel(e.target.value)}
+                  onChange={(e) => setactivity_level(e.target.value)}
                 />
                 <label htmlFor="intermediate" className="form-check-label">
                   Intermediate
@@ -215,10 +218,10 @@ const UserInputForm = () => {
                 <input
                   type="radio"
                   id="advanced"
-                  name="activityLevel"
+                  name="activity_level"
                   className="form-check-input"
                   value="Advanced"
-                  onChange={(e) => setActivityLevel(e.target.value)}
+                  onChange={(e) => setactivity_level(e.target.value)}
                 />
                 <label htmlFor="advanced" className="form-check-label">
                   Advanced

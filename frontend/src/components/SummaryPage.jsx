@@ -8,7 +8,8 @@ const SummaryPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { name, age, weight, height, activityLevel, gender } = location.state || {};
+  const { name, age, weight, height, activity_level, gender } =
+    location.state || {};
 
   // Normalize and select image
   const normalizedGender = gender?.trim().toLowerCase();
@@ -17,7 +18,7 @@ const SummaryPage = () => {
 
   const handleGoToWorkout = () => {
     navigate("/workout-goals", {
-      state: { name, age, weight, height, activityLevel, gender },
+      state: { name, age, weight, height, activity_level, gender },
     });
   };
 
@@ -25,10 +26,13 @@ const SummaryPage = () => {
     <div className="summary-container container my-5 d-flex">
       {/* Left side container for profile details */}
       <div className="col-md-6" style={{ padding: "20px" }}>
-        <h2 className="summary-header mb-4" style={{ fontSize: '35px' }}>
+        <h2 className="summary-header mb-4" style={{ fontSize: "35px" }}>
           Hi, {name}!
         </h2>
-        <p className="summary-subheader mb-4" style={{ color: 'grey', fontSize: '22px', fontWeight: '300' }}>
+        <p
+          className="summary-subheader mb-4"
+          style={{ color: "grey", fontSize: "22px", fontWeight: "300" }}
+        >
           We have generated your basic profile:
         </p>
 
@@ -46,7 +50,7 @@ const SummaryPage = () => {
             <strong>Height:</strong> {height} cm
           </p>
           <p>
-            <strong>Activity Level:</strong> {activityLevel}
+            <strong>Activity Level:</strong> {activity_level}
           </p>
           <p>
             <strong>Gender:</strong> {gender}
@@ -64,7 +68,10 @@ const SummaryPage = () => {
       </div>
 
       {/* Right side container for the profile image */}
-      <div className="col-md-6 d-flex align-items-center justify-content-center px-5" style={{ padding: "20px" }}>
+      <div
+        className="col-md-6 d-flex align-items-center justify-content-center px-5"
+        style={{ padding: "20px" }}
+      >
         <img
           src={profileImage}
           alt="Profile"

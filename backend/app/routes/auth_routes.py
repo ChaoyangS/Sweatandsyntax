@@ -35,8 +35,6 @@ def signup():
     #retrieve the userId
     if status_code == 201:
         session["user_id"] = response["user_id"] # Store user_id in session
-        print("Session After Signup:", dict(session))  # Log session after signup
-
     return jsonify(response), status_code
 
 
@@ -108,7 +106,6 @@ def login():
 
     # Respond with success
     return jsonify({"success": True, "message": "Login successful!", "user": user['email']})
-
 
 
 @auth_bp.route("/logout", methods=["POST"])
