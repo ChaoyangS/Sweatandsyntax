@@ -21,6 +21,7 @@ function App() {
         {/* <Header2 /> Include Header in the App component */}
         {/* Define Routes */}
         <Routes>
+          <Route path="/" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/user-input" element={<UserInputForm />} />
