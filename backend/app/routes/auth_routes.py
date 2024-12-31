@@ -31,6 +31,8 @@ def signup():
     #retrieve the userId
     if status_code == 201:
         session["user_id"] = response["user_id"] # Store user_id in session
+        print("Session After Signup:", dict(session))  # Log session after signup
+
     return jsonify(response), status_code
 
 
@@ -84,6 +86,7 @@ def login():
         return jsonify({"error": "Invalid username or password"}), 401
 
     # Save session
+    session['user_id'] = user.id  # Assuming user.id is the primary key
     session['username'] = user.username
     session['email'] = user.email
     return jsonify({"message": "Login successful!", "user": user.username})
