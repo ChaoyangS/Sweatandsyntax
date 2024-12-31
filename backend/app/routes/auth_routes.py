@@ -2,8 +2,12 @@ from flask import Blueprint, request, jsonify
 from ..services.auth_service import AuthService
 from flask import session
 from app.models import user 
+from ..dal.user_dao import UserDAO  # Import UserDAO
+from werkzeug.security import check_password_hash, generate_password_hash
+
 
 auth_bp = Blueprint("auth", __name__) # Create a blueprint for auth routes
+
 
 @auth_bp.route('/')
 def home():
@@ -67,29 +71,44 @@ def add_user_details():
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
-    # Get input data
-    data = request.json
-    username = data.get('username')
-    password = data.get('password')
+    # Debugging input
+    data = request.get_json()
+    print("Received JSON:", data)
 
     # Validate input
-    if not username or not password:
-        return jsonify({"error": "Username and password are required"}), 400
+    if not data or "email" not in data or "password" not in data:
+        return jsonify({"error": "Email and password are required"}), 400
 
-    # Query the database for the user
-    user = user.query.filter_by(username=username).first()
+    email = data.get('email')
+    password = data.get('password')
+
+    # Instantiate DAO inside the route
+    user_dao = UserDAO()
+
+    # Query the user by email
+    user = user_dao.get_user_by_username_or_email(None, email)
+
+    # Debugging log
+    print("Queried User:", user)
+    print("Password from DB:", user['password'])
+
+    # Check if user exists
     if not user:
-        return jsonify({"error": "Invalid username or password"}), 401
+        return jsonify({"error": "Invalid email or password"}), 401
 
-    # Compare plain text password
-    if user.password != password:  # No hashing, plain text check
-        return jsonify({"error": "Invalid username or password"}), 401
+    # Check password using Werkzeug
+    if not check_password_hash(user['password'], password):
+        return jsonify({"error": "Invalid email or password"}), 401
 
     # Save session
-    session['user_id'] = user.id  # Assuming user.id is the primary key
-    session['username'] = user.username
-    session['email'] = user.email
-    return jsonify({"message": "Login successful!", "user": user.username})
+    session['user_id'] = user['user_id']
+    session['email'] = user['email']
+
+    print("Session After Login:", dict(session))  # Debugging session state
+
+    # Respond with success
+    return jsonify({"success": True, "message": "Login successful!", "user": user['email']})
+
 
 
 @auth_bp.route("/logout", methods=["POST"])

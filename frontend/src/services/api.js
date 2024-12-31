@@ -18,9 +18,19 @@ export const addUserDetails = (userDetails) => {
   });
 };
 
-// Login API
-export const login = (credentials) => {
-  return axios.post(`${API_BASE_URL}/auth/login`, credentials, {
-    withCredentials: true,
-  });
+export const login = async (credentials) => {
+  try {
+    const response = await axios.post(
+      `${API_BASE_URL}/auth/login`,
+      credentials,
+      {
+        withCredentials: true, // Send cookies for session
+      }
+    );
+    console.log(response.data); // Debug response
+    return response.data; // Return response data
+  } catch (error) {
+    console.error("Login API Error:", error.response?.data || error.message);
+    throw error.response?.data || error.message; // Handle errors
+  }
 };
