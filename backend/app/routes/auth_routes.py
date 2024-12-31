@@ -43,7 +43,7 @@ def add_user_details():
 
     # Get user details from the request body
     data = request.json
-    required_fields = ["weight", "height", "age", "gender", "muscle", "activity_level"]
+    required_fields = ["weight", "height", "age", "gender", "activity_level"]
 
     if not all(field in data for field in required_fields):
         return jsonify({"error": "Missing required fields"}), 400
@@ -52,11 +52,14 @@ def add_user_details():
     height = data["height"]
     age = data["age"]
     gender = data["gender"]
-    muscle = data["muscle"]
     activity_level = data["activity_level"]
 
     # Call AuthService to add user details
     response, status_code = AuthService.create_user_details(user_id, weight, height, age, gender, muscle, activity_level)
+
+    print("Session Data:", dict(session))
+    print("Headers:", request.headers)
+
     return jsonify(response), status_code
 
 

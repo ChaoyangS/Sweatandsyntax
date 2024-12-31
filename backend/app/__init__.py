@@ -1,39 +1,33 @@
 import sys
-
 print(sys.path)
 
 import os
 from app.db import init_app as db_init_app
 from flask import Flask, session
-from flask_session import Session  # Add this import
+from flask_session import Session  # Ensure Session is imported
 from .routes.auth_routes import auth_bp
 from .routes.workout_routes import workout_bp
 from config import Config
 from flask_cors import CORS
 
-
-"""
-The __init__.py serves double duty:
-it will contain the application factory,
-and it tells Python that the directory should be treated as a package.
-"""
-
 def create_app(test_config=None):
-
     # Create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     
-    # Enable CORS for all routes, supporting credentials
+    # Enable CORS
     CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5173"], allow_headers=["Content-Type"])
 
     # Load configuration from Config class
     app.config.from_object(Config)
 
+    # Print session configuration for debugging
+    print("Session Config:", app.config['SESSION_FILE_DIR'])  # <-- Debugging line
+    
     # Ensure the instance folder exists
     os.makedirs(app.instance_path, exist_ok=True)
 
     # Initialize Flask-Session
-    Session(app)  # <-- This initializes the session!
+    Session(app)  # <-- Session initialized here
 
     # Register blueprints
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
@@ -43,6 +37,7 @@ def create_app(test_config=None):
     db_init_app(app)
 
     return app
+
 
 
 

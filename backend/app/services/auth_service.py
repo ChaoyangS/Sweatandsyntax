@@ -28,7 +28,7 @@ class AuthService:
         return {"message": "User created successfully", "user_id": user_id}, 201
 
     @staticmethod
-    def create_user_details (user_id, weight, height, age, gender, level):
+    def create_user_details (user_id, weight, height, age, gender, activity_level):
         """
         Creates user details with user_id
         :param user_id: user_id of the user.
@@ -39,7 +39,7 @@ class AuthService:
         :param level: activity_level of the user
         :return: Success or error message as a dictionary.
         """
-        UserDAO().create_user_details(user_id, weight, height, age, gender, level)
+        UserDAO().create_user_details(user_id, weight, height, age, gender, activity_level)
         return {"message": "User details added successfully"}, 201
 
 

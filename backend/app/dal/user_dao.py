@@ -23,7 +23,7 @@ class UserDAO(BaseDAL):
 
     def create_user_details(self, user_id, weight, height, age, gender, activity_level):
         self.execute_query(
-            """INSERT INTO user_details (user_id, weight, height, age, gender, muscle, activity_level) 
+            """INSERT INTO user_details (user_id, weight, height, age, gender, , activity_level) 
             VALUES (?, ?, ?, ?, ?, ?, ?)""",
             (user_id, weight, height, age, gender, activity_level)
         )

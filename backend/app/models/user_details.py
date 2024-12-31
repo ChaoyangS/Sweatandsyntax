@@ -3,7 +3,7 @@ class UserDetails:
     user_details.py represents a user_details object
     """
 
-    def __init__(self, user_details_id, user_id, weight, height, age, gender, muscle, activity_level):
+    def __init__(self, user_details_id, user_id, weight, height, age, gender, activity_level):
         """
         Initiate a user instance
         :param user_details_id:  UserDetailsId from the database
@@ -39,5 +39,4 @@ class UserDetails:
             'gender': self.gender,
             'activity_level' : self.activity_level
         }
-    
     

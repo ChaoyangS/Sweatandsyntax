@@ -24,7 +24,7 @@ CREATE TABLE user_details (
     height REAL NOT NULL,
     age INTEGER,
     gender TEXT CHECK (gender IN ('Male', 'Female', 'Other')),
-    level TEXT, -- e.g., 'beginner', 'intermediate', 'advanced'
+    activity_level TEXT, -- e.g., 'beginner', 'intermediate', 'advanced'
     FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE
 );
 
