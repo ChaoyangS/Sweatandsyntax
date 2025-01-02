@@ -5,12 +5,12 @@
 **Project Summary**  
 SweatandSyntax is a personal trainer application designed to provide customized workout plans, progress tracking, and fitness goal management. While the current implementation focuses on core features such as user authentication, session persistence, and interactive dashboards, the long-term vision is to integrate with chatGPT API to analyze user data and deliver optimized recommendations for achieving fitness objectives.
 
-Link to Devpost project page: _(To be added: finalized Devpost site)_
+Link to Devpost project page: https://devpost.com/software/sweat-and-syntax?ref_content=user-portfolio&ref_feature=in_progress
 
 **Authors**
 
 - Chaoyang Shen - ChaoyangS - shec@seas.upenn.edu - [GitHub](https://github.com/ChaoyangS)
-- Huyu Chen- DevpostID-XXX - huyuchen@seas.upenn.edu - [GitHub](https://github.com/laurachenn-dot)
+- Huyu Chen - huyuchen@seas.upenn.edu - [GitHub](https://github.com/laurachenn-dot)
 - Yiqun Tian - tianyq - tianyq@seas.upenn.edu - [GitHub](https://github.com/YiqunT)
 - Zhiyao Jia - messonj - messonj@seas.upenn.edu - [GitHub](https://github.com/Messonj)
 
